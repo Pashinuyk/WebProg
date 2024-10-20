@@ -1,0 +1,353 @@
+﻿<!doctype html>
+<html lang="ru">
+    <head>
+      <title><h1 align="center">
+        Список консолей
+      </h1></title>
+    </head>
+  
+  <body>
+    <hr>
+    <a href="first.html">Самые продаваемые игровые консоли</a><br><a href="#consoles">Список игровых консолей</a><hr>
+    
+    <details>
+      <summary>График</summary>
+      <p>
+      <b>Значение по оси OX:</b><br>
+        <label><input type="checkbox" name="razrab" value="razrab">Разработчик</label><br>
+        <label><input type="checkbox" name="type" value="year">Год выпуска</label><br>
+        <label><input type="checkbox" name="gen" value="gen">Поколение</label>
+      </p>
+      
+      <p>
+      <b>Результат:</b><br>
+        <label><input type="radio" name="res" value="sells">Суммарные продажи</label><br>
+        <label><input type="radio" name="res" value="mem">Максимальная опер. память</label>
+      </p>
+      <input type="submit" value="Подтвердить">
+    </details>
+    
+    <details>
+      <summary>Фильтр</summary>
+      <label>Название: <input type="text" name="name"></label><br>
+      
+      Тип: <select id="type">
+          <option value="0">Домашняя</option>
+          <option value="1">Портативная</option>
+      </select><br>
+      
+      <label>Разработчик: <input type="text" name="dev"></label><br>
+      
+      <label>Процессор: <input type="text" name="cpu"></label><br>
+      
+      <label>Частота процессора: от <input type="number" min="0" name="temp1"></label> <label> до <input type="number" min="0" name="temp2"></label><br>
+      
+     <label>RAM: от <input type="number" min="0" name="ram1"></label> <label> до <input type="number" min="0" name="ram2"></label><br>
+     
+     <label>Поколение: <input type="number" min="1" max="9" name="gen"></label><br>
+     
+     <label>Год выпуска: от <input type="number" min="0" name="year1"></label> <label> до <input type="number" min="0" name="year2"></label><br>
+     
+     <input type="submit" value="Применить">
+      
+    </details>
+    
+    <details>
+      <summary>Сортировка</summary>
+      <label>Первый уровень:
+      <select id="type1">
+          <option value="0">Нет</option>
+          <option value="1">Название</option>
+          <option value="2">Тип</option>
+          <option value="3">Разработчик</option>
+          <option value="4">Процессор</option>
+          <option value="5">Такт. частота/option>
+          <option value="6">Оперативная память</option>
+          <option value="7">Продано</option>
+          <option value="8">Поколение</option>
+          <option value="9">Год выпуска</option>
+      </select></label>
+      <label>по убыванию?<input type="checkbox" value="frlow"></label><br>
+      
+       <label>Второй уровень:
+      <select id="type2">
+          <option value="0">Нет</option>
+          <option value="1">Название</option>
+          <option value="2">Тип</option>
+          <option value="3">Разработчик</option>
+          <option value="4">Процессор</option>
+          <option value="5">Такт. частота/option>
+          <option value="6">Оперативная память</option>
+          <option value="7">Продано</option>
+          <option value="8">Поколение</option>
+          <option value="9">Год выпуска</option>
+      </select></label>
+      <label>по убыванию?<input type="checkbox" value="seclow"></label><br>  
+      
+      <label>Третий уровень:
+      <select id="type3">
+          <option value="0">Нет</option>
+          <option value="1">Название</option>
+          <option value="2">Тип</option>
+          <option value="3">Разработчик</option>
+          <option value="4">Процессор</option>
+          <option value="5">Такт. частота/option>
+          <option value="6">Оперативная память</option>
+          <option value="7">Продано</option>
+          <option value="8">Поколение</option>
+          <option value="9">Год выпуска</option>
+      </select></label>
+      <label>по убыванию?<input type="checkbox" value="thrlow"></label>      
+    </details>    
+    
+    <a id="consoles"></a><table border="1" cellpadding ="10" cellspacing="0" align="center">
+      <tr align="center">
+        <td>Название</td>
+        <td>Изображение</td>
+        <td>Тип</td>
+        <td>Разработчик</td>
+        <td>Процессор</td>
+        <td style="width: 25px;">Такт. частота процессора (МГц)</td>
+        <td style="width: 75px;">Оперативная памяти (МБ)</td>
+        <td style="width: 50px;">Продано (млн.)</td>
+        <td>Поколение</td>
+        <td>Год выпуска</td>
+      </tr>
+      
+      <tr align="center">
+        <td>Sega Mega Drive</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Sega-Mega-Drive-JP-Mk1-Console-Set.jpg" alt="SEGA MEGA DRIVE" width="125"></td>
+        <td>Домашняя</td>
+        <td>Sega</td>
+        <td>Motorola 68000</td>
+        <td>7,6</td>
+        <td>0,064</td>
+        <td>39,7</td>
+        <td>4</td>
+        <td>1988</td>
+      </tr>
+      
+      <tr align="center">
+        <td>Nintendo Entertainment System</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/NES-Console-Set.png" alt="NES" width="125"></td>
+        <td>Домашняя</td>
+        <td>Nintendo</td>
+        <td>Ricoh 2A03</td>
+        <td>1,79</td>
+        <td>0,002</td>
+        <td>61,91</td>
+        <td>3</td>
+        <td>1983</td>
+      </tr>
+      
+      <tr align="center">
+        <td>Super Nintendo</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Nintendo-Super-Famicom-Set-FL.jpg" alt="SNES" width="125"></td>
+        <td>Домашняя</td>
+        <td>Nintendo</td>
+        <td>Ricoh 5A22</td>
+        <td>3,58</td>
+        <td>0,128</td>
+        <td>49,1</td>
+        <td>4</td>
+        <td>1990</td>
+      </tr>
+      
+      <tr align="center">
+        <td>PC Engine</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/TurboGrafx16-Console-Set.jpg" alt="PC ENGINE" width="125"></td>
+        <td>Домашняя</td>
+        <td>NEC</td>
+        <td>Hudson Soft HuC6280</td>
+        <td>7,16</td>
+        <td>0,008</td>
+        <td>10</td>
+        <td>4</td>
+        <td>1987</td>
+      </tr>
+      
+      <tr align="center">
+        <td>PlayStation</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/PlayStation-SCPH-1000-with-Controller.jpg" alt="PS" width="125"></td>
+        <td>Домашняя</td>
+        <td>Sony</td>
+        <td>R3000</td>
+        <td>33,8688</td>
+        <td>2</td>
+        <td>102,49</td>
+        <td>5</td>
+        <td>1994</td>
+      </tr>
+      
+      <tr align="center">
+        <td>Nintendo 64</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/1/11/N64-Console-Set.jpg" alt="NINTENDO 64" width="125"></td>
+        <td>Домашняя</td>
+        <td>Nintendo</td>
+        <td>64-bit NEC VR4300</td>
+        <td>93,75</td>
+        <td>4</td>
+        <td>32,93</td>
+        <td>5</td>
+        <td>1996</td>
+      </tr>
+      
+      <tr align="center">
+        <td>Game Boy Advance</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Nintendo-Game-Boy-Advance-Purple-FL.jpg" alt="GBA" width="125"></td>
+        <td>Портативная</td>
+        <td>Nintendo</td>
+        <td>ARM7TDMI</td>
+        <td>16,78</td>
+        <td>0,288</td>
+        <td>81,51</td>
+        <td>6</td>
+        <td>2001</td>
+      </tr>
+
+      <tr align="center">
+        <td>Sega 32X</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Sega-Genesis-Model2-32X.jpg" alt="SEGA 32X" width="125"></td>
+        <td>Аддон</td>
+        <td>Sega</td>
+        <td>Hitachi SH-2</td>
+        <td>23</td>
+        <td>0,256</td>
+        <td>0,8</td>
+        <td>5</td>
+        <td>1994</td>
+      </tr>
+      
+      <tr align="center">
+        <td>Dreamcast</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/0/07/Dreamcast-Console-Set.png" alt="DREAMCAST" width="125"></td>
+        <td>Домашняя</td>
+        <td>Sega</td>
+        <td>Hitachi SH-4</td>
+        <td>200</td>
+        <td>16</td>
+        <td>9,13</td>
+        <td>6</td>
+        <td>1998</td>
+      </tr>
+      
+      <tr align="center">
+        <td>Game Gear</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Sega-Game-Gear-WB.png" alt="GAME GEAR" width="125"></td>
+        <td>Портативная</td>
+        <td>Sega</td>
+        <td>Zilog Z80</td>
+        <td>3,5</td>
+        <td>0,008</td>
+        <td>10,62</td>
+        <td>4</td>
+        <td>1990</td>
+      </tr>
+      
+      <tr align="center">
+        <td>PlayStation Portable</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Psp-1000.jpg" alt="PSP" width="125"></td>
+        <td>Портативная</td>
+        <td>Sony</td>
+        <td>MIPS R4000</td>
+        <td>222</td>
+        <td>32</td>
+        <td>80</td>
+        <td>7</td>
+        <td>2004</td>
+      </tr>
+      
+      <tr align="center">
+        <td>Xbox 360</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Microsoft-Xbox-360-E-wController.jpg" alt="XBOX 360" width="100"></td>
+        <td>Домашняя</td>
+        <td>Microsoft</td>
+        <td>PowerPC Tri-Core Xenon</td>
+        <td>3200</td>
+        <td>512</td>
+        <td>84</td>
+        <td>7</td>
+        <td>2005</td>
+      </tr>
+      
+      <tr align="center">
+        <td>PlayStation 5</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Black_and_white_Playstation_5_base_edition_with_controller.png" alt="PS5" width="100"></td>
+        <td>Домашняя</td>
+        <td>Sony</td>
+        <td>8-core AMD Zen 2</td>
+        <td>3500</td>
+        <td>16000</td>
+        <td>61,8</td>
+        <td>9</td>
+        <td>2020</td>
+      </tr>
+      
+      <tr align="center">
+        <td>Nintendo Switch</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Nintendo-Switch-wJoyCons-BlRd-Standing-FL.jpg" alt="SWITCH" width="125"></td>
+        <td>Гибридная</td>
+        <td>Nintendo</td>
+        <td>ARM 4 Cortex-A57</td>
+        <td>1020</td>
+        <td>4000</td>
+        <td>143,42</td>
+        <td>8</td>
+        <td>2017</td>
+      </tr>
+      
+      <tr align="center">
+        <td>PlayStation 2</td>
+        <td><img src="https://gamespirit.org/image/PlayStation%202/preload_J5wIN_350.jpg" alt="PS2" width="125"></td>
+        <td>Домашняя</td>
+        <td>Sony</td>
+        <td>MIPS R5900 Emotion Engine</td>
+        <td>294,912</td>
+        <td>32</td>
+        <td>155,1</td>
+        <td>6</td>
+        <td>2000</td>
+      </tr>
+
+      <tr align="center">
+        <td>Sega CD</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Sega-CD-Model1-Set.jpg" alt="MEGA-CD" width="125"></td>
+        <td>Аддон</td>
+        <td>Sega</td>
+        <td>Motorola 68000</td>
+        <td>12,5</td>
+        <td>0,512</td>
+        <td>2,24</td>
+        <td>4</td>
+        <td>1991</td>
+      </tr>
+      
+      <tr align="center">
+        <td>Atari 2600</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Atari-2600-Wood-4Sw-Set.png" alt="ATARI 2600" width="125"></td>
+        <td>Домашняя</td>
+        <td>Atari</td>
+        <td>MOS Technology 6507</td>
+        <td>1,19</td>
+        <td>0,000128</td>
+        <td>30</td>
+        <td>2</td>
+        <td>1977</td>
+      </tr>
+      
+      <tr align="center">
+        <td>Xbox One</td>
+        <td><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Microsoft-Xbox-One-Console-Set-wKinect.jpg" alt="XBOX ONE" width="125"></td>
+        <td>Домашняя</td>
+        <td>Microsoft</td>
+        <td>8-core APU</td>
+        <td>1750</td>
+        <td>8000</td>
+        <td>58</td>
+        <td>8</td>
+        <td>2013</td>
+      </tr>
+      
+    </table>
+  </body>
+</html>
