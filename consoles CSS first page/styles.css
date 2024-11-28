@@ -22,7 +22,6 @@
 }
 
 .block1 > div {
-    border: thin solid red;
     display: block;
     height: 75%;
     
@@ -31,6 +30,8 @@
 .block1 span {
     font-size: 1.5em;
     font-weight: bold;
+    color:blue;
+    backdrop-filter: blur(5px);
 }
 
 .block1 ul {
@@ -40,9 +41,13 @@
 .block1 li {
     display: inline-block;
     overflow: hidden;
-    width: 9%;
-    height: 34%;
+    width: 15%;
+    height: 49%;
     margin: 0px 10px;
+    font-size: 1.2em;
+}
+
+.block1 .active { 
     backdrop-filter: blur(5px);
 }
 
@@ -55,7 +60,7 @@
  display: inline-block;  
  width: 30%;
  height: 21%;
- margin: 10px;
+ margin: 10px auto;
  overflow: hidden;
  
 }
@@ -89,6 +94,8 @@ li .lower-block {
     height: 50%;
     border: thin solid white;
     vertical-align: middle;
+    text-indent: 4mm;
+    padding: 7px;
 }
 
 .block3 div {
