@@ -1,0 +1,62 @@
+.content {
+    border: solid thin black;
+}
+
+.block1 {
+    background-image: url("https://stepik.org/media/attachments/course/114064/back_7.jpg");
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    
+}
+
+.block2 {
+    border: solid thin black;
+}
+
+.block3 {
+    display: inline;
+    border: thin solid blue;
+    padding-right: 28.4%;
+}
+
+ul {
+    text-align: center;
+    
+}
+
+li {
+    border: solid thin black;
+ display: inline-block;  
+ padding: px;
+ width: 27%;
+ height: 21%;
+ margin: 10px;
+ vertical-align: middle;
+}
+
+
+div img {
+  height: 50%;
+  width: 50%;
+  float: left;
+}
+
+li div {
+    padding: 10px;
+    border: thin solid green;
+    width: 92%;
+    height: 37%;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+
+li span {
+    font-weight: bold;
+    
+}
+
+.block3 span {
+ text-align: center;  
+}    
+}
