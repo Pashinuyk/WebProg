@@ -11,13 +11,14 @@
 }
 
 .block2 {
+    width: 100%;
     border: solid thin black;
 }
 
 .block3 {
-    display: inline;
-    border: thin solid blue;
-    padding-right: 28.4%;
+    width: 100%; 
+    height: 5%;
+    overflow: hidden;
 }
 
 ul {
@@ -28,7 +29,7 @@ ul {
 li {
     border: solid thin black;
  display: inline-block;  
- width: 27%;
+ width: 30%;
  height: 21%;
  margin: 10px;
  overflow: hidden;
@@ -39,25 +40,41 @@ li > span {
     font-weight: bold;
 }
 
-li > img {
-  height: 50%;
+.uppear-block > img {
+  height: 98%;
   width: 50%;
   vertical-align: middle;
-  float: none;
-  text-align: left;
-  border: thin solid red;
+  float: left;
+  border: thin solid white;
 }
 
-li div {
-    padding: 10px;
-    border: thin solid green;
-    width: 92%;
-    height: 37%;
+li .uppear-block {
+    display: inline-block;
+    border: thin solid white;
+    width: 100%;
+    height: 50%;
+    vertical-align: middle;
     text-overflow: ellipsis;
+}
+
+li .lower-block {
+    display: inline-block;
+    text-overflow: inherit;
     text-align: left;
+    width: 100%;
+    height: 50%;
+    border: thin solid white;
+    vertical-align: middle;
+}
+
+.block3 div {
+    padding: 15px 0px;
+    display: inline-block;
+    width: 49.2%;
+    float: left
 }
 
 .block3 span {
- text-align: center;  
-}    
+ float: right;  
+ text-indent: 0px;
 }
