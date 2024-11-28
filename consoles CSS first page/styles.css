@@ -28,18 +28,24 @@ ul {
 li {
     border: solid thin black;
  display: inline-block;  
- padding: px;
  width: 27%;
  height: 21%;
  margin: 10px;
- vertical-align: middle;
+ overflow: hidden;
+ 
 }
 
+li > span {
+    font-weight: bold;
+}
 
-div img {
+li > img {
   height: 50%;
   width: 50%;
-  float: left;
+  vertical-align: middle;
+  float: none;
+  text-align: left;
+  border: thin solid red;
 }
 
 li div {
@@ -49,11 +55,6 @@ li div {
     height: 37%;
     text-overflow: ellipsis;
     text-align: left;
-}
-
-li span {
-    font-weight: bold;
-    
 }
 
 .block3 span {
