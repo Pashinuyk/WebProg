@@ -3,7 +3,7 @@
 }
 
 .block1 {
-    background-image: url("https://stepik.org/media/attachments/course/114064/back_7.jpg");
+    background-image: url("https://dzen.ru/lz5XeGt8f/S19Ld4436/bcbb1fWS/YUX7LzGneXS6kFRge7JxYylWJELQTNxvqqjejdu83TRprt9ofZIX0raU5Uhg5-tTaionIK---1lPjJN5JZzAFmARrxrARsk177E0Yq_jtLKsY9GiAGjZ_nvJv3ievYyF7PupHUmTExfj0cOY8Fd6oZiIFsfpaZheuOshvAEJBffBJanpYVC5JxhzZQNJ9DJBydZFo5GO_hk5O_pNWp3ox3ju7soNQFBkU_GjHrfAbbLrmJRFGNuITUhrA99Qe4YD8lZYCGWg-EZIsJTiWvUzYJuXVbJivqw7CMv7L8n_qRb7T14LP_OzVpJSEB1m0g4we7pV5WvqKN6qKrO_ESs1oXNlujnlwWnHm7OVYHnX0WKZJWYjsnz8uVq4mkzLzKlmSd7sCB2wQjSgg8MvB_N-ksrZRMZbyigumxlRDJA4R2CAZsi4RNLKVIoCVKE6VBIS6oXmoJF8_Qs5m1htOV0ZZbj-DotvgTB3gQPjzfbQjdD4WxYUqrmrbnrogM3gaHeBUxZ5GQXSi8dI82UgSRThowqGJ4DA3Wyb2OrorpsOuEeobI6rnSLiFKBzQk23sC_yyAk2lQnqCvy6StFMo6rXM8F0ukmlwbpVWKNV0GpmY8J5xdTBY0_v-brJOl47zBmnSl6NCm5RY0UD0oLvF-BP8pk6lCcYOvlde_vBLTJIBCNzF1pq1mMLxRmyBPE71uGCmDfVw3DszsnLmbi8ia3KpKitHYpMQVFVMEPRH9VS_CN5q0SESxkbzInK4v6BmbdzojaamIQRKgToQrdROaQBUPvmlpMi7167GRtZfise-ESZjS-I3iBhhZOw427l8e9TOduWpeu6GS0ZySPfcToUY5GGKLhH4Ikne6EkYahFA6BZt0TxsPx-CaoJ631ZfenXGu78ORzzI1aRsaFMxaDMwzurNgRq2DvfWTvBrmOL9_Fit9hrlYLLFFrCldI4FlNi26QGoRE9PvrpGqjdSK-61shcLPudEqGVgePwXYWCrWB7Gme2uDnp7ThaIy4h29RDsGY66FWwmXe6YAUAetcBEFiWd8JwHe8bWXnqLCl_27Ur3u74_wDiFQAA8n91Q9zgWSgmp9pKW11p6hPuU4oEsUEnmUinAUsEmLPl0ShXELK59GZQ0R98G3tK6z8q3eklK89tuz3DYwaDI3P_NfBNItj5ZIVIKvss6FjB7yP6REPgtpkaR6HLFIhAJ1LY1jMAKWS0ghBd7epr2oj_uW4bN9ve_rrN8RN247NyzURQjDMq6maW6Ng4T6mL8c9wSycwcoTaCnWzKDV7AdbzSKXR47ln9LAAjqw7eitorNq9iKU5LJ-Lb3KRRTFQ4h8HMQzyijpF9Ogq6H57C6P8AOl0AYJ2Cwrls1kkSDB24ioXk8LoJrVxAn2fC1tIuu8or6p1KcwsyS-hcIez4oFPRcM8A0gpdDUKCYk-qYuAflOadjFCRoqoB4Ip18jBVRNqtgARGEbmQRMN7yjpefgdWb7q9LjcfemtczPk0HPzDtdQb1L7qmVVKcl5DknKgY6QSWfRotQqCudhW6Xq4GQxmYex09omVKChr-6Jerq6LMn-yKZIfH27D9NQJUNDgHznUN9iqwsEhTkZW-2q6BN8YBoUIoJVqbvWcvuW6-HGgYmHsoAJlNeCoqx-6BlKi-3ZjcplSS0uOk2g8YdgseBdtyBO4xg4lLWKq-v8-xkSzFIoJiHgtKk7lhOp5SqhtoDZlIJRCbQV4BBcbWp52KrumL4Jllvvn4ltQUKkoEGxTwQCTuLLiRWU6Gj43GhLUl9yiAeTsyV5i_YzWGbKI2QC25azcpuW5UNADQ9pyrnaj1pN2xZZTo0bPDFANlCAAn0UYs0xCcp0tSu46P0qO5Isckg0I3C0WXumMetHGNK1A8sWcmPqluZw0Q0P-Sj5y02Y3DrHur9t6w8gEAVSUwAvZ5FesCgaJhSbmEnsCvqSLgKLRINCh8k75aG4xpuhJpMos");
     width: 100%;
     height: 20%;
     text-align: center;
@@ -21,12 +21,36 @@
     overflow: hidden;
 }
 
-ul {
-    text-align: center;
+.block1 > div {
+    border: thin solid red;
+    display: block;
+    height: 75%;
     
 }
 
-li {
+.block1 span {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.block1 ul {
+    text-align: center;
+}
+
+.block1 li {
+    display: inline-block;
+    overflow: hidden;
+    width: 9%;
+    height: 34%;
+    margin: 0px 10px;
+    backdrop-filter: blur(5px);
+}
+
+.block2 ul {
+    text-align: center;
+}
+
+.block2 li {
     border: solid thin black;
  display: inline-block;  
  width: 30%;
