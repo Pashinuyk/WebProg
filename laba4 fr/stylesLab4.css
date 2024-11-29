@@ -1,0 +1,36 @@
+fieldset {
+    width: 100%;
+}
+
+legend {
+    font-weight: bold;
+}
+
+h2 {
+    text-align: center;
+}
+
+.logo{ 
+    grid-template-columns: repeat(2, 40%);  
+    display: grid;
+    width: 50%;
+    height: 50%;
+    justify-content: center;
+    
+    grid-gap: 1vw; 
+  }
+
+  .logo > .item{ 
+    padding: 2px;
+    text-align: center;
+} 
+
+.grey {
+    border: 1px solid grey; 
+    background:grey;   
+}
+
+.green{ 
+    border: 1px solid darkgreen; 
+    background: darkgreen;   
+} 
