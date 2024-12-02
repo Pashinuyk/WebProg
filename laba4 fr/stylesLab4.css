@@ -1,36 +1,46 @@
-fieldset {
-    width: 100%;
-}
-
-legend {
-    font-weight: bold;
-}
-
-h2 {
+h3 {
     text-align: center;
 }
 
-.logo{ 
+p { 
     grid-template-columns: repeat(2, 40%);  
     display: grid;
     width: 50%;
     height: 50%;
     justify-content: center;
-    
+
+    margin: auto;
     grid-gap: 1vw; 
   }
 
-  .logo > .item{ 
+  p > a { 
     padding: 2px;
     text-align: center;
 } 
 
-.grey {
+a {
     border: 1px solid grey; 
     background:grey;   
 }
 
 .green{ 
-    border: 1px solid darkgreen; 
-    background: darkgreen;   
+    border: 1px solid rgb(18, 100, 0); 
+    background: rgb(18, 100, 0);   
 } 
+
+.banner {
+    display: flex;
+}
+
+.item1 {
+    border: 7px solid green;
+}
+
+.banner span {
+    font-weight: bold;
+}
+
+.field2 {
+    width: 50%;
+
+}
