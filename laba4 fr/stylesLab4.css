@@ -10,8 +10,7 @@ p {
     justify-content: center;
 
     margin: auto;
-    /*grid-gap: 1vw; */
-    grid-gap: 10px;
+    grid-gap: 5px;
   }
 
   p > a { 
@@ -23,27 +22,79 @@ p {
     text-decoration: none;    
 } 
 
-p > a:hover {
+p > a:visited {
+    color: black;
+}
+
+p > a:nth-child(2) {
     background-color: green;
 }
 
-p > a:hover:before {
+p > a:nth-child(2):before {
     content: "✓";
 }
 
 .content {
     display: grid;
-    width: 90%;
-    margin: auto;
-    grid-template-rows: 2fr 1fr;
-    grid-template-columns: 1fr 2fr;
+    width: 65%;
+    margin: 5px auto;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas: 
+    "it1 it1 it1 it2 it2"
+    "it3 it3 it4 it4 it4";
 }
+
+.content .topic:first-child {
+  grid-area: it1;
+}
+
+.content .topic:nth-child(2) {
+    grid-area: it2;
+}
+
+.content .topic:nth-child(3) {
+    grid-area: it3;
+}
+
+.content .topic:last-child {
+    grid-area: it4;
+  }
 
 .topic {
     border: 5px solid green;
     padding: 5px;
+
+}
+
+.topic {
+    text-align: center;
 }
 
 .topic b {
-    float: center;
+    display: block; 
+    text-align: center;
+}
+
+.content .topic:nth-child(2) b {
+    background: gray;
+}
+
+.content .topic:nth-child(2) b:before {
+    content: "✓";
+}
+
+@media all and (max-width: 600px) {
+    p { 
+        grid-template-rows: repeat(4, 40%);  
+        grid-template-columns: 1fr;
+        grid-gap: 2px;
+      } 
+
+    .content {
+        display: block;
+        margin: 2px auto;
+    }   
+      
+    }
 }
