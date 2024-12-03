@@ -10,37 +10,40 @@ p {
     justify-content: center;
 
     margin: auto;
-    grid-gap: 1vw; 
+    /*grid-gap: 1vw; */
+    grid-gap: 10px;
   }
 
   p > a { 
     padding: 2px;
     text-align: center;
-} 
 
-a {
     border: 1px solid grey; 
     background:grey;   
-}
-
-.green{ 
-    border: 1px solid rgb(18, 100, 0); 
-    background: rgb(18, 100, 0);   
+    text-decoration: none;    
 } 
 
-.banner {
-    display: flex;
+p > a:hover {
+    background-color: green;
 }
 
-.item1 {
-    border: 7px solid green;
+p > a:hover:before {
+    content: "✓";
 }
 
-.banner span {
-    font-weight: bold;
+.content {
+    display: grid;
+    width: 90%;
+    margin: auto;
+    grid-template-rows: 2fr 1fr;
+    grid-template-columns: 1fr 2fr;
 }
 
-.field2 {
-    width: 50%;
+.topic {
+    border: 5px solid green;
+    padding: 5px;
+}
 
+.topic b {
+    float: center;
 }
