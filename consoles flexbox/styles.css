@@ -40,9 +40,18 @@ nav div h3 {
     margin: 20px 20px;
 }
 
-nav div h3:nth-child(1) {
+nav div div {
+    margin: auto;
+}
+
+nav div:nth-child(1) h3 {
     background-color: darkslategray;
     color: yellow;
+}
+
+.hovered_h {
+    background: darkslategray;
+    height: 70px;
 }
 
 .imgscont {
@@ -87,18 +96,24 @@ nav div h3:nth-child(1) {
 }
 
 .grid-container-descr1 {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 3fr 1fr;
+    display: flex;
     border: thin solid black;
     width: 70%;
     height: 150px;
-    margin: auto;
+    margin: 10px auto;
     padding: 10px;
 }
 
-.grid-container-descr1 div:nth-child(1) {
+.grid-container-descr1 .obj:nth-child(1) {
+    display: grid;
+    width: 67%;
     overflow: hidden;
+    height: 100%;
+}
+
+.grid-container-descr1 .obj:nth-child(2) {
+    display: flex;
+    width: 33%;
     height: 100%;
 }
 
@@ -106,10 +121,27 @@ nav div h3:nth-child(1) {
     width: 100%;
 }
 
-.grid-container-descr1 h3 {
+.obj h3 {
     text-align: center;
 }
 
 .grid-container-descr1:nth-child(2) {
+    flex-direction: row-reverse;
+}
+
+footer div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1 fr;    
+    background: darkslategrey;
+    padding: 4px;
+}
+
+.foot-fr {
+    display: flex;
+}
+
+.foot-sec {
+    display: flex;
     flex-direction: row-reverse;
 }
