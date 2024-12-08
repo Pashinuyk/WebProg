@@ -6,7 +6,7 @@ header {
 }
 
 header .board {
-    width: 50%;
+    width: 55%;
     height: 50%;
     background: white;
     margin: auto 5px;
@@ -119,6 +119,7 @@ nav div:nth-child(1) h3 {
 
 .grid-container-descr1 img {
     width: 100%;
+    height: 100%;
 }
 
 .obj h3 {
@@ -144,4 +145,85 @@ footer div {
 .foot-sec {
     display: flex;
     flex-direction: row-reverse;
+}
+
+@media all and (max-width: 750px) {
+
+    nav div {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        grid-gap: 2vw;
+    }
+
+    nav {
+        flex-direction: column;
+        display: flex;
+        background: lightgray;
+        width: 100%;
+        height: 200px;
+    }   
+    
+    nav h3 {
+        display: flex;
+        margin: auto;
+    }    
+
+    nav div h3 {
+        display: flex;
+        margin: auto;
+    }
+
+    .imgscont {
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;    
+        grid-template-columns: 1fr;
+        grid-row-gap: 30px;
+      }
+
+      .grid-container {
+        display: grid;
+        width: 20%;
+        grid-template-rows: repeat(8, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        margin: 20px auto;
+        grid-gap: 1vw;
+        align-items: center;
+        grid-template-areas:
+        "img1 img2"
+        "img3 img4"
+        "img5 img6"
+        "img7 img8";
+        height: 200px;
+      }
+
+        .grid-container div:nth-child(1) {
+            grid-area: img1;  
+        }
+        .grid-container div:nth-child(2) {
+            grid-area: img2;  
+        }
+   
+        .grid-container div:nth-child(3) {
+            grid-area: img5;  
+          }
+          .grid-container .obj:nth-child(4) {
+            grid-area: img6;  
+          }                  
+
+      .grid-container div:nth-child(5) {
+        grid-area: img3;  
+      }  
+      .grid-container div:nth-child(6) {
+        grid-area: img4;  
+      }
+     
+      .grid-container div:nth-child(7) {
+        grid-area: img7;  
+      }  
+      .grid-container div:nth-child(8) {
+        grid-area: img8;  
+      }        
+    }
+
 }
