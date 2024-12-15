@@ -6,3 +6,14 @@
 .TEST {
   border: solid red;
 }
+
+@media all and (max-width: 992px) {
+  .block:nth-child(2) {
+    background: red;
+    margin: 10px;
+  }
+
+  .block:nth-child(3) {
+    margin: auto;
+  }
+}
