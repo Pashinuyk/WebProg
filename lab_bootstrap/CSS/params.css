@@ -1,3 +1,12 @@
-.shirina {
-    text: red;
+    
+.lead{
+  text-align: justify;
 }
+
+@media all and (max-width: 576px) {
+    .lead {
+    font-size: 1rem;
+    }
+
+}
+
