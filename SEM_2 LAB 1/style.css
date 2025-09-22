@@ -1,0 +1,33 @@
+#output {
+  background-color: gray
+}
+
+.error { 
+  border: solid 2px red; 
+}
+
+.errorSearch {
+  color: red;
+}
+
+img {
+  width: 150px;
+  align-self: center;
+  margin-right: 20px;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+}
+
+#output {
+     display: block;
+     text-align: center;
+}
+
+.task {
+  display: flex;
+  flex-direction: column;
+}
+

@@ -1,0 +1,60 @@
+<html > 
+    <head> 
+        <meta charset="utf-8"> 
+        <link rel="stylesheet" href="style.css"> 
+    </head> 
+    <body> 
+        <div class="task"> 
+            
+            <div class="input"> 
+                <img src="pict_1.png"> 
+                <form> 
+                    <p><span id="tsifra"></span>
+                        <select id="typeOfData">
+                          <option value="1">3 стороны</option>
+                          <option value="2">сторона; 2 прилежащих угла</option>
+                        </select>
+
+                        <input type="button" value="Показать" 
+                                         onClick="reorganize(this.form)">                        
+                    </p>
+                    <p> 
+                        <label><span id="frF">A =</span> 
+                            <input type="number" id="input1" min=1 max="99999"
+                            onmouseover="this.classList.remove('error')"> 
+                        </label> 
+                    </p> 
+                    <p> 
+                        <label><span id="secF">B =</span>
+                            <input type="number" id="input2" min=1 max="99999"
+                            onmouseover="this.classList.remove('error')"> 
+                        </label> 
+                    </p> 
+                    <p> 
+                        <label><span id="thrF">C =</span>
+                            <input type="number" id="input3" min=1 max="99999"
+                            onmouseover="this.classList.remove('error')"> 
+                        </label> 
+                    </p>                     
+                    <p> 
+                        <span id="search">Найти:</span> 
+                        <br><label><input type="checkbox" id="task1" > площадь</label><br>
+                         <label><input type="checkbox" id="task2"> радиус вписанной окружности</label><br>
+                         <label><input type="checkbox" id="task3"> высота</label><br>
+                         <label><input type="checkbox" id="task4"> биссектриса</label> 
+                    </p> 
+                    <p> 
+                        <input type="button" value="Вычислить" 
+                                         onClick="calculate(this.form)"> 
+                        <input type="button" value="Очистить"
+                                         onClick="clean(this.form)"> 
+                    </p> 
+                </form>
+            </div> 
+            <div id="output"> 
+
+            </div> 
+        </div> 
+    </body> 
+    <script src="program.js"> </script> 
+</html>
