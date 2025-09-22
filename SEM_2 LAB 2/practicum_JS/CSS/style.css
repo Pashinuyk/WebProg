@@ -1,0 +1,37 @@
+body {
+  border: solid 2px #bbbbbb;  
+  display: flex;
+  display: inline-block;
+  justify-content: center;
+  padding: 5px;
+}
+
+table {  /*ДОДЕЛАТЬ ОТСТУП ОТ ГРАНИЦЫ*/
+  border-spacing: 0;
+}
+
+tr {
+  background-color: #efefef;
+  text-align: left;
+}
+
+tr th {
+  font-weight: normal;
+  padding-left: 8px;
+  padding-right: 5px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin: 5px;
+
+  border: solid thin #dddddd;
+}
+
+tr:first-child {
+  background-color: #d3d3d3;
+  text-align: center;
+}
+
+tr:first-child th {
+  font-weight: bold;
+}
+
