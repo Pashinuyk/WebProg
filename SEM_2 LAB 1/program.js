@@ -6,11 +6,13 @@ function reorganize(data) {
     if (dataType == 2) {
         document.getElementById("secF").textContent = "α =";
         document.getElementById("thrF").textContent = "β =";
+        document.querySelector('img').src='pict_2.png';
         data.input2.min = 0; data.input.max = 360;
         data.input3.min = 0; data.input.max = 360;
     } else {
         document.getElementById("secF").textContent = "B =";
         document.getElementById("thrF").textContent = "C =";   
+        document.querySelector('img').src='pict_1.png';
         data.input2.min = 1; data.input.max = 99999;
         data.input3.min = 1; data.input.max = 99999; 
     }

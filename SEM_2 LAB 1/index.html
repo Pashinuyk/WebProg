@@ -21,27 +21,31 @@
                     <p> 
                         <label><span id="frF">A =</span> 
                             <input type="number" id="input1" min=1 max="99999"
-                            onmouseover="this.classList.remove('error')"> 
+                            onchange="this.classList.remove('error')"> 
                         </label> 
                     </p> 
                     <p> 
                         <label><span id="secF">B =</span>
                             <input type="number" id="input2" min=1 max="99999"
-                            onmouseover="this.classList.remove('error')"> 
+                            onchange="this.classList.remove('error')"> 
                         </label> 
                     </p> 
                     <p> 
                         <label><span id="thrF">C =</span>
                             <input type="number" id="input3" min=1 max="99999"
-                            onmouseover="this.classList.remove('error')"> 
+                            onchange="this.classList.remove('error')"> 
                         </label> 
                     </p>                     
                     <p> 
                         <span id="search">Найти:</span> 
-                        <br><label><input type="checkbox" id="task1" > площадь</label><br>
-                         <label><input type="checkbox" id="task2"> радиус вписанной окружности</label><br>
-                         <label><input type="checkbox" id="task3"> высота</label><br>
-                         <label><input type="checkbox" id="task4"> биссектриса</label> 
+                        <br><label><input type="checkbox" id="task1"
+                            onchange="document.getElementById('search').classList.remove('errorSearch')" > площадь</label><br>
+                         <label><input type="checkbox" id="task2"
+                            onchange="document.getElementById('search').classList.remove('errorSearch')" > радиус вписанной окружности</label><br>
+                         <label><input type="checkbox" id="task3"
+                            onchange="document.getElementById('search').classList.remove('errorSearch')" > высота</label><br>
+                         <label><input type="checkbox" id="task4"
+                            onchange="document.getElementById('search').classList.remove('errorSearch')" > биссектриса</label> 
                     </p> 
                     <p> 
                         <input type="button" value="Вычислить" 
