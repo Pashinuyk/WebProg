@@ -8,10 +8,12 @@
     <script src="JavaScript/data.js"></script>
     <script src="JavaScript/main.js"></script>
     <script src="JavaScript/table.js"></script>
+    <script src="JavaScript/filter.js"></script>
+    <script src="JavaScript/sort.js"></script>
   </head>
   <body>
-
-    <form id="filter">
+    <div>
+    <form id="filter">                             <!-- ФИЛЬТРАЦИЯ -->
         <p>
           <label for="structure">Название:</label>
           <input type="text" id="structure">
@@ -20,7 +22,6 @@
           <label for="category">Тип:</label>
           <input type="text" id="category">
         </p>
-        4
         <p>
           <label for="country">Страна:</label>
           <input type="text" id="country">
@@ -39,11 +40,32 @@
           от <input type="number" id="heightFrom">
           до <input type="number" id="heightTo">
         </p>
-          <input type="button" value="Найти">
-          <input type="button" value="Очистить фильтры">
+          <input type="button" value="Найти"
+            onClick="filterTable(buildings, 'list', this.form)">
+          <input type="button" value="Очистить фильтры"
+          onClick="clearFilter(this.form)">
     </form>    
 
-    <table id="list">
+    <form id="sort">                                 <!-- СОРТИРОВКА -->
+      <p> Сортировать по</p>
+      <p>
+        <select id="fieldsFirst"
+          onchange="changeNextSelect('fieldsSecond', this)">
+        </select>
+        по убыванию? <input type="checkbox" id="fieldsFirstDesc">
+      </p>
+      <p>
+        <select id="fieldsSecond">
+        </select>
+        по убыванию? <input type="checkbox" id="fieldsSecondDesc">
+      </p>
+      <input type="button" value="Сортировать"
+        onClick="sortTable('list', document.getElementById('sort'))">
+      <input type="button" value="Сбросить сортировку">
+    </form>
+    </div>
+
+    <table id="list">                                           <!-- ТАБЛИЦА -->
     </table>
   </body>
 </html>

@@ -32,16 +32,22 @@ let createTable = (data, idTable) => {
     }); 
 }
 
+
+
 let clearTable = (idTable) => {
       let i = 0;
       let El = document.getElementById(idTable);
 
-      while (El.children.length > 1) {
-        El.children[1].remove()
+      while (El.children.length > 0) {
+        El.children[0].remove()
       }
 
 
-    }
+}
+
+
+
+let
 
     /*function getParent(idElement){
         let El = document.getElementById(idTable);

@@ -1,9 +1,17 @@
 body {
   border: solid 2px #bbbbbb;  
   display: flex;
-  display: inline-block;
+  flex-direction: column;
   justify-content: center;
   padding: 5px;
+}
+
+div {
+  display: flex;
+}
+
+#sort {
+  margin-top: auto;
 }
 
 table {  /*ДОДЕЛАТЬ ОТСТУП ОТ ГРАНИЦЫ*/
