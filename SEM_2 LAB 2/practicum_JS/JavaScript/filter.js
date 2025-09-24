@@ -8,7 +8,7 @@ let correspond = {
   "Высота": ["heightFrom", "heightTo"]
 }
 
-
+let reserv = document.getElementById('filter')
 
 let dataFilter = (dataForm) => {   //фильтрация данных
   let dictFilter = {};
@@ -48,6 +48,16 @@ let dataFilter = (dataForm) => {   //фильтрация данных
 
   
 let filterTable = (data, idTable, dataForm) =>{   // фильтрация таблицы
+
+  let form = document.getElementById('sort')
+  for (let i=0;i<4;i++)
+    if (i==0 || i==2) {
+      form[i].value = 0
+    } else {
+      form[i].checked = false
+    }
+    changeNextSelect('fieldsSecond', document.getElementById('fieldsFirst'))
+
   // получаем данные из полей формы
   let datafilter = dataFilter(dataForm);
   // выбираем данные соответствующие фильтру и формируем таблицу из них
@@ -81,10 +91,33 @@ let filterTable = (data, idTable, dataForm) =>{   // фильтрация таб
   clearTable(idTable)
 
   // показать на странице таблицу с отфильтрованными строками
-  createTable(tableFilter, idTable);
+ //alert(tableFilter.length)
+
+ reserv = dataForm
+
+
+  if (tableFilter.length > 0) {
+    createTable(tableFilter, idTable);
+  } else {
+    createTable(buildings[0], idTable);
+  }
 }  
 
 let clearFilter = (idTable) => {
-  for (let i=0; i<idTable.elements.length-2; i++)
-  idTable.elements[i].value = ''
+
+  let form = document.getElementById('sort')
+  for (let i=0;i<4;i++)
+    if (i==0 || i==2) {
+      form[i].value = 0
+    } else {
+      form[i].checked = false
+    }
+  changeNextSelect('fieldsSecond', document.getElementById('fieldsFirst'))
+
+  for (let i=0; i<idTable.elements.length-2; i++) {
+    idTable.elements[i].value = ''
+  }
+
+  clearTable('list')
+  createTable(buildings, 'list');  
 }

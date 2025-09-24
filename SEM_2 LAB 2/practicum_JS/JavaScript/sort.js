@@ -74,3 +74,25 @@ let sortTable = (idTable, data) => {
     });
 
 }
+
+
+
+let dropSort = (idTable, form) => {
+   for (let i=0;i<4;i++)
+    if (i==0 || i==2) {
+      form[i].value = 0
+    } else {
+      form[i].checked = false
+    }
+    changeNextSelect('fieldsSecond', document.getElementById('fieldsFirst'))
+
+    let val = document.getElementById('filter')
+
+    clearTable(idTable)
+    createTable(buildings, idTable);
+    filterTable(buildings, idTable, reserv)
+
+}
+
+
+

@@ -39,10 +39,9 @@ let setSortSelects = (data, dataForm) => {
       //формируем опции очередного SELECT
       setSortSelect(head, allSelect[j]);
       //самостоятельно все SELECT, кроме первого, сделать неизменяемыми
-     /* if (j > 0) {
-        allSelect[j].style.pointerEvents = 'none';
-        allSelect[j].style.opacity = '0.6';
-      }*/
+      if (j > 0) {
+        allSelect[j].disabled = true
+      } 
     }
 }
 
