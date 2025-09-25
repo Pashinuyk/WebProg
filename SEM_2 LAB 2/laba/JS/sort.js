@@ -11,6 +11,7 @@ order: порядок сортировки (true по убыванию, false п
 let createSortArr = (data) => {
   let sortArr = [];
   let sortSelects = data.getElementsByTagName('select');
+
   for (let i = 0; i < sortSelects.length; i++) {
     // получаем номер выбранной опции
     let keySort = sortSelects[i].value;
@@ -31,7 +32,6 @@ let createSortArr = (data) => {
 
 let sortTable = (idTable, data) => {
     // формируем управляющий массив для сортировки
-
     let sortArr = createSortArr(data);
     // сортировать таблицу не нужно, во всех полях выбрана опция Нет
     if (sortArr.length === 0) {
@@ -48,7 +48,7 @@ let sortTable = (idTable, data) => {
     rowData.sort((first, second) => {
       for(let i in sortArr) {
         let key = sortArr[i].column;
-        if ((i == 0 && data[1].checked == false) || (i == 1 && data[3].checked == false)) {
+        if ((i == 0 && data[1].checked == false) || (i == 1 && data[3].checked == false) || (i == 2 && data[5].checked == false)) {
           if (first.cells[key].innerHTML > second.cells[key].innerHTML) {
             return 1;
           } else if (first.cells[key].innerHTML < second.cells[key].innerHTML){
@@ -89,8 +89,8 @@ let dropSort = (idTable, form) => {
     let val = document.getElementById('filter')
 
     clearTable(idTable)
-    createTable(buildings, idTable);
-    filterTable(buildings, idTable, reserv)
+    createTable(consoles, idTable);
+    filterTable(consoles, idTable, reserv)
 
 }
 

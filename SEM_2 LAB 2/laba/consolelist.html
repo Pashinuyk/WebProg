@@ -35,28 +35,38 @@
     
     <details>
       <summary>Фильтр</summary>
-      <form id="filter">
-        <label>Название: <input type="text" id="name"></label><br>
+      <form id="filter">                                                                        <!-- ФИЛЬТРАЦИЯ-->
+        <label for="name">Название: <input type="text" id="name"></label><br>
       
         Тип: <select id="type">
-          <option value="0">Домашняя</option>
-          <option value="1">Портативная</option>
-          <option value="2">Гибридная</option>
+          <option value="0">Нет</option>
+          <option value="1">Домашняя</option>
+          <option value="2">Портативная</option>
+          <option value="3">Гибридная</option>
+          <option value="4">Аддон</option>
         </select><br>
       
-        <label>Разработчик: <input type="text" id="dev"></label><br>
+        <label for="dev">Разработчик: <input type="text" id="dev"></label><br>
       
         <label>Процессор: <input type="text" id="cpu"></label><br>
       
-        <label>Частота процессора: от <input type="number" min="0" id="temp1"></label> <label> до <input type="number" min="0" id="temp2"></label><br>
+        <label for="temp1">Частота процессора:</label> 
+            от <input type="number" min="0" id="temp1">
+            до <input type="number" min="0" id="temp2"><br>
       
-        <label>RAM: от <input type="number" min="0" id="ram1"></label> <label> до <input type="number" min="0" id="ram2"></label><br>
+        <label for="ram1">RAM:</label> 
+            от <input type="number" min="0" id="ram1"> 
+            до <input type="number" min="0" id="ram2"><br>
+        
+        <label for="gen1">Поколение: 
+            от <input type="number" min="1" max="9" id="gen1">
+            до <input type="number" min="1" max="9" id="gen2"><br>
      
-        <label>Поколение: <input type="number" min="1" max="9" id="gen"></label><br>
+        <label for="year1">Год выпуска:</label> 
+            от <input type="number" min="0" id="year1">
+            до <input type="number" min="0" id="year2"><br>
      
-        <label>Год выпуска: от <input type="number" min="0" id="year1"></label> <label> до <input type="number" min="0" id="year2"></label><br>
-     
-        <input type="submit" value="Применить"
+        <input type="button" value="Применить"
            onClick="filterTable(consoles, 'list', this.form)">
      </form>
       
@@ -64,50 +74,28 @@
     
     <details>
       <summary>Сортировка</summary>
-      <label>Первый уровень:
-      <select id="type1">
-          <option value="0">Нет</option>
-          <option value="1">Название</option>
-          <option value="2">Тип</option>
-          <option value="3">Разработчик</option>
-          <option value="4">Процессор</option>
-          <option value="5">Такт. частота/option>
-          <option value="6">Оперативная память</option>
-          <option value="7">Продано</option>
-          <option value="8">Поколение</option>
-          <option value="9">Год выпуска</option>
-      </select></label>
-      <label>по убыванию?<input type="checkbox" value="frlow"></label><br>
+      <form id="sort">                                                      <!--СОРТИРОВКА -->
+        <label>Первый уровень:
+        <select id="fieldsFirst"
+          onchange="changeNextSelect('fieldsSecond', this)">
+        </select></label>
+        <label>по убыванию?<input type="checkbox" id="fieldsFirstDesc"></label><br>
       
-       <label>Второй уровень:
-      <select id="type2">
-          <option value="0">Нет</option>
-          <option value="1">Название</option>
-          <option value="2">Тип</option>
-          <option value="3">Разработчик</option>
-          <option value="4">Процессор</option>
-          <option value="5">Такт. частота/option>
-          <option value="6">Оперативная память</option>
-          <option value="7">Продано</option>
-          <option value="8">Поколение</option>
-          <option value="9">Год выпуска</option>
-      </select></label>
-      <label>по убыванию?<input type="checkbox" value="seclow"></label><br>  
+         <label>Второй уровень:
+        <select id="fieldsSecond"
+          onchange="changeNextSelect('fieldsThird', this)">
+        </select></label>
+        <label>по убыванию?<input type="checkbox" id="fieldsSecondDesc"></label><br>  
       
-      <label>Третий уровень:
-      <select id="type3">
-          <option value="0">Нет</option>
-          <option value="1">Название</option>
-          <option value="2">Тип</option>
-          <option value="3">Разработчик</option>
-          <option value="4">Процессор</option>
-          <option value="5">Такт. частота/option>
-          <option value="6">Оперативная память</option>
-          <option value="7">Продано</option>
-          <option value="8">Поколение</option>
-          <option value="9">Год выпуска</option>
-      </select></label>
-      <label>по убыванию?<input type="checkbox" value="thrlow"></label>      
+        <label>Третий уровень:
+        <select id="fieldsThird">
+        </select></label>
+        <label>по убыванию?<input type="checkbox" id="fieldsThirdDesc"></label><br> 
+
+        <input type="button" value="Сортировать"
+          onClick="sortTable('list', document.getElementById('sort'))">        
+      </form>  
+
     </details>    
     
     <!--<form id="consoles"></a>-->

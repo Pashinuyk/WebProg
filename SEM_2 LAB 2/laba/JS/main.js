@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
-  //  setSortSelects(buildings[0], document.getElementById("sort"))
+    setSortSelects(consoles[0], document.getElementById("sort"))
     createTable(consoles, 'list');
+   // filterTable(consoles, 'list', document.getElementById('filter'));
+  // alert('1')
 })
 
 
@@ -31,13 +33,18 @@ let setSortSelect = (head, sortSelect) => {
 let setSortSelects = (data, dataForm) => {
     // выделяем ключи словаря в массив
     let head = Object.keys(data);
+    let head2 = []
+    head2[0] = head[0]
+    for (let i=2; i<head.length;i++) {
+      head2[i] = head[i]
+    }
     
     // находим все SELECT в форме
     let allSelect = dataForm.getElementsByTagName('select');
 
     for(let j = 0; j < allSelect.length; j++) {
       //формируем опции очередного SELECT
-      setSortSelect(head, allSelect[j]);
+      setSortSelect(head2, allSelect[j]);
       //самостоятельно все SELECT, кроме первого, сделать неизменяемыми
       if (j > 0) {
         allSelect[j].disabled = true
@@ -50,14 +57,32 @@ let setSortSelects = (data, dataForm) => {
 // настраиваем поле для следующего уровня сортировки
 let changeNextSelect = (nextSelectId, curSelect) => {
     let nextSelect = document.getElementById(nextSelectId);
+    let praNextSelect;
+    if (nextSelect.id == 'fieldsSecond') praNextSelect = document.getElementById('fieldsThird')
+
+
+
     nextSelect.disabled = false;
     // в следующем SELECT выводим те же option, что и в текущем
     nextSelect.innerHTML = curSelect.innerHTML;
     // удаляем в следующем SELECT уже выбранную в текущем опцию
     // если это не первая опция - отсутствие сортировки
     if (curSelect.value != 0) {
-      nextSelect.remove(curSelect.value);
+        if (curSelect.value > 2) {
+          if (nextSelect.id == 'fieldsSecond') { 
+            nextSelect.remove(curSelect.value-1)
+            praNextSelect.remove(curSelect.value-1)
+          } else nextSelect.remove(curSelect.value-2)
+        } else {
+          nextSelect.remove(curSelect.value);
+          if (nextSelect.id == 'fieldsSecond') praNextSelect.remove(curSelect.value)
+        } 
     } else {
+
       nextSelect.disabled = true;
+      if (nextSelect.id == 'fieldsSecond') { 
+        praNextSelect.disabled = true
+        praNextSelect.value = 0
+      }  
     }
 }

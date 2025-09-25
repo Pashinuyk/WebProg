@@ -4,7 +4,7 @@ consoles= [
         "Изображение": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Sega-Mega-Drive-JP-Mk1-Console-Set.jpg",
         "Тип": "Домашняя",
         "Разработчик": "Sega",
-        "Процессор": "Motorola 68000",
+        "Процессор": "Motorola 68000, Zilog Z80",
         "Такт. частота процессора (МГц)": 7.6,
         "Оперативная памяти (МБ)": 0.064,
         "Продано (млн.)": 39.7,
