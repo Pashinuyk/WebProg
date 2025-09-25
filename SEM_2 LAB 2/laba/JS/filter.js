@@ -68,14 +68,14 @@ let dataFilter = (dataForm) => {   //фильтрация данных
   
 let filterTable = (data, idTable, dataForm) =>{   // фильтрация таблицы
 
- /* let form = document.getElementById('sort')                         ВЕРНУТЬ
+  let form = document.getElementById('sort')                       
   for (let i=0;i<4;i++)
     if (i==0 || i==2) {
       form[i].value = 0
     } else {
       form[i].checked = false
     }
-    changeNextSelect('fieldsSecond', document.getElementById('fieldsFirst'))*/
+    changeNextSelect('fieldsSecond', document.getElementById('fieldsFirst'))
 
   // получаем данные из полей формы
   let datafilter = dataFilter(dataForm);

@@ -48,8 +48,9 @@ let sortTable = (idTable, data) => {
     rowData.sort((first, second) => {
       for(let i in sortArr) {
         let key = sortArr[i].column;
-        if ((i == 0 && data[1].checked == false) || (i == 1 && data[3].checked == false) || (i == 2 && data[5].checked == false)) {
-          if (first.cells[key].innerHTML > second.cells[key].innerHTML) {
+
+        if ((i == 0 && data[1].checked == false) || (i == 1 && data[3].checked == false)) {
+          if (first.cells[key].innerHTML / 1 > second.cells[key].innerHTML) {
             return 1;
           } else if (first.cells[key].innerHTML < second.cells[key].innerHTML){
             return -1;
@@ -78,7 +79,7 @@ let sortTable = (idTable, data) => {
 
 
 let dropSort = (idTable, form) => {
-   for (let i=0;i<4;i++)
+   for (let i=0;i<6;i++)
     if (i==0 || i==2) {
       form[i].value = 0
     } else {
