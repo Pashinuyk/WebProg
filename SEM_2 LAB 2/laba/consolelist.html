@@ -1,0 +1,119 @@
+﻿<!doctype html>
+<html lang="ru">
+    <head>
+      <title><h1 align="center">
+        Список консолей
+      </h1></title>
+      <script src="JS/data.js"></script>
+      <script src="JS/main.js"></script>
+      <script src="JS/table.js"></script>
+      <script src="JS/filter.js"></script>
+      <script src="JS/sort.js"></script>   
+      <link rel="stylesheet" href="CSS/style.css">   
+    </head>
+  
+  <body>
+    <hr>
+    <a href="first.html">Самые продаваемые игровые консоли</a><br><a href="#consoles">Список игровых консолей</a><hr>
+    
+    <details>
+      <summary>График</summary>
+      <p>
+      <b>Значение по оси OX:</b><br>
+        <label><input type="checkbox" name="razrab" value="razrab">Разработчик</label><br>
+        <label><input type="checkbox" name="type" value="year">Год выпуска</label><br>
+        <label><input type="checkbox" name="gen" value="gen">Поколение</label>
+      </p>
+      
+      <p>
+      <b>Результат:</b><br>
+        <label><input type="radio" name="res" value="sells">Суммарные продажи</label><br>
+        <label><input type="radio" name="res" value="mem">Максимальная опер. память</label>
+      </p>
+      <input type="submit" value="Подтвердить">
+    </details>
+    
+    <details>
+      <summary>Фильтр</summary>
+      <form id="filter">
+        <label>Название: <input type="text" id="name"></label><br>
+      
+        Тип: <select id="type">
+          <option value="0">Домашняя</option>
+          <option value="1">Портативная</option>
+          <option value="2">Гибридная</option>
+        </select><br>
+      
+        <label>Разработчик: <input type="text" id="dev"></label><br>
+      
+        <label>Процессор: <input type="text" id="cpu"></label><br>
+      
+        <label>Частота процессора: от <input type="number" min="0" id="temp1"></label> <label> до <input type="number" min="0" id="temp2"></label><br>
+      
+        <label>RAM: от <input type="number" min="0" id="ram1"></label> <label> до <input type="number" min="0" id="ram2"></label><br>
+     
+        <label>Поколение: <input type="number" min="1" max="9" id="gen"></label><br>
+     
+        <label>Год выпуска: от <input type="number" min="0" id="year1"></label> <label> до <input type="number" min="0" id="year2"></label><br>
+     
+        <input type="submit" value="Применить"
+           onClick="filterTable(consoles, 'list', this.form)">
+     </form>
+      
+    </details>
+    
+    <details>
+      <summary>Сортировка</summary>
+      <label>Первый уровень:
+      <select id="type1">
+          <option value="0">Нет</option>
+          <option value="1">Название</option>
+          <option value="2">Тип</option>
+          <option value="3">Разработчик</option>
+          <option value="4">Процессор</option>
+          <option value="5">Такт. частота/option>
+          <option value="6">Оперативная память</option>
+          <option value="7">Продано</option>
+          <option value="8">Поколение</option>
+          <option value="9">Год выпуска</option>
+      </select></label>
+      <label>по убыванию?<input type="checkbox" value="frlow"></label><br>
+      
+       <label>Второй уровень:
+      <select id="type2">
+          <option value="0">Нет</option>
+          <option value="1">Название</option>
+          <option value="2">Тип</option>
+          <option value="3">Разработчик</option>
+          <option value="4">Процессор</option>
+          <option value="5">Такт. частота/option>
+          <option value="6">Оперативная память</option>
+          <option value="7">Продано</option>
+          <option value="8">Поколение</option>
+          <option value="9">Год выпуска</option>
+      </select></label>
+      <label>по убыванию?<input type="checkbox" value="seclow"></label><br>  
+      
+      <label>Третий уровень:
+      <select id="type3">
+          <option value="0">Нет</option>
+          <option value="1">Название</option>
+          <option value="2">Тип</option>
+          <option value="3">Разработчик</option>
+          <option value="4">Процессор</option>
+          <option value="5">Такт. частота/option>
+          <option value="6">Оперативная память</option>
+          <option value="7">Продано</option>
+          <option value="8">Поколение</option>
+          <option value="9">Год выпуска</option>
+      </select></label>
+      <label>по убыванию?<input type="checkbox" value="thrlow"></label>      
+    </details>    
+    
+    <!--<form id="consoles"></a>-->
+    <table id='list' border="1" cellpadding ="10" cellspacing="0" align="center">
+
+      
+    </table>
+  </body>
+</html>
