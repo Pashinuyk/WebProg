@@ -48,22 +48,42 @@ let sortTable = (idTable, data) => {
     rowData.sort((first, second) => {
       for(let i in sortArr) {
         let key = sortArr[i].column;
-        if ((i == 0 && data[1].checked == false) || (i == 1 && data[3].checked == false) || (2 == 1 && data[5].checked == false)) {
-          if (first.cells[key].innerHTML > second.cells[key].innerHTML) {
-            return 1;
-          } else if (first.cells[key].innerHTML < second.cells[key].innerHTML){
-            return -1;
+        
+        if (key < 5) {
+
+          if ((i == 0 && data[1].checked == false) || (i == 1 && data[3].checked == false) || (2 == 1 && data[5].checked == false)) {
+            if (first.cells[key].innerHTML > second.cells[key].innerHTML) {
+              return 1;
+            } else if (first.cells[key].innerHTML < second.cells[key].innerHTML){
+              return -1;
+            }
           }
-        }
-        else {
+          else {
             if (first.cells[key].innerHTML < second.cells[key].innerHTML) {
                 return 1;
             } else if (first.cells[key].innerHTML > second.cells[key].innerHTML){
                 return -1;
             }      
-        }
+          }
 
+      } else {
+          if ((i == 0 && data[1].checked == false) || (i == 1 && data[3].checked == false) || (2 == 1 && data[5].checked == false)) {
+            if ((first.cells[key].innerHTML / 1) > (second.cells[key].innerHTML / 1)) {
+              return 1;
+            } else if ((first.cells[key].innerHTML / 1) < (second.cells[key].innerHTML / 1)){
+              return -1;
+            }
+          }
+          else {
+            if ((first.cells[key].innerHTML / 1) < (second.cells[key].innerHTML / 1)) {
+                return 1;
+            } else if ((first.cells[key].innerHTML / 1) > (second.cells[key].innerHTML / 1)){
+                return -1;
+            }      
+          }
       }
+    }  
+
     return 0;
     });
 

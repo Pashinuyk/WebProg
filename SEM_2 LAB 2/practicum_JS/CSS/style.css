@@ -6,8 +6,15 @@ body {
   padding: 5px;
 }
 
+summer {
+  display: block;
+  font-weight: bold;
+  text-align: center;
+}
+
 div {
   display: flex;
+  gap: 20px;
 }
 
 #sort {
@@ -43,3 +50,45 @@ tr:first-child th {
   font-weight: bold;
 }
 
+
+
+
+
+
+
+/*form#filter {
+  margin: 0 auto;
+  font-family: sans-serif;
+  padding: 15px;
+}
+
+form#filter p {
+  margin: 10px 0;
+}
+
+form#filter label {
+  display: inline-block;
+  width: 80px;
+  text-align: right;
+  margin-right: 5px;
+}
+
+form#filter input[type="text"],
+form#filter input[type="number"] {
+ // width: 150px;
+  box-sizing: border-box;
+}
+
+form#filter p:nth-child(6) input[type="number"],
+form#filter p:nth-child(7) input[type="number"] {
+  width: 60px;
+}
+
+form#filter input[type="button"] {
+  margin: 10px 5px 0 0;
+}
+
+form#filter div.button-row {
+  text-align: center;
+  margin-top: 10px;
+}

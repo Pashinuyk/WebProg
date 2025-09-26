@@ -151,7 +151,12 @@ let clearFilter = (idTable) => {
   changeNextSelect('fieldsSecond', document.getElementById('fieldsFirst'))
 
   for (let i=0; i<idTable.elements.length-2; i++) {
-    idTable.elements[i].value = ''
+    if (i == 1) {
+      idTable.elements[i].value = 0
+    } else {
+      idTable.elements[i].value = ''
+    }
+   // idTable.elements[i].value = ''
   }
 
   clearTable('list')

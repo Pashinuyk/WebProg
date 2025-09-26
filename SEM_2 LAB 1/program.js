@@ -24,24 +24,69 @@ function reorganize(data) {
 
 function calculate(data) {
     /* читаем входные данные */ 
+
+   // err = document.getElementById('Input1');
+   // er = document.getElementsByTagName('span')
+    //er.innerHTML = ""
+   // err.appendChild(er)      
     let a = Number(data.input1.value); 
     let b = Number(data.input2.value);
     let c = Number(data.input3.value);
+    let err
+    let er
 
     let isError = 0;
 
     if (a <= 0) {
-      data.input1.classList.add("error"); 
+    //  err = document.getElementById('Input1');
+    // er = document.getElementsByTagName('span')
+    //  er.innerHTML = ""
+    //  err.appendChild(er)        
+
+     // err = document.getElementById('frF'); 
+     // err.innerHTML = "Неверное значение!";
+      err = document.getElementById('Input1');
+      er = document.createElement('span')
+      er.innerHTML = "Неверное значение!"
+      err.appendChild(er)
       isError = 1;
     } 
     if ((b <= 0) || (b > 360 && dataType==2)) {
       data.input2.classList.add("error"); 
-      isError = 1;      
+      isError = 1;    
+      
+      err = document.getElementById('secF'); 
+      err = document.getElementById('Input2');
+      er = document.createElement('span')
+      er.innerHTML = "Неверное значение!"
+      err.appendChild(er)  
     } 
     if ((c <= 0) || (c > 360 && dataType==2)) {
       data.input3.classList.add("error"); 
       isError = 1;
+
+      err = document.getElementById('thrF'); 
+      err = document.getElementById('Input3');
+      er = document.createElement('span')
+      er.innerHTML = "Неверное значение!"
+      err.appendChild(er)     
     }  
+
+  /*  if (dataType == 1) {
+        if (a+b > c) {
+            data.input1.classList.add("error"); 
+            data.input2.classList.add("error"); 
+            isError = 1;
+        } else if (a+c > b) {
+             data.input1.classList.add("error"); 
+            data.input3.classList.add("error"); 
+            isError = 1;           
+        } else if (b+c > a) {
+            data.input2.classList.add("error"); 
+            data.input3.classList.add("error"); 
+            isError = 1;
+        }
+    }*/
 
     if ((data.task1.checked == 0) && (data.task2.checked == 0) && (data.task3.checked == 0) && (data.task4.checked == 0)) {
       document.getElementById("search").classList.add("errorSearch");
@@ -68,7 +113,9 @@ function calculate(data) {
 
     if (dataType == 1) {
       p = (a+b+c)/2;
+      alert(p)
       s = Math.sqrt(p*(p-a)*(p-b)*(p-c));
+      alert(s)
     } else {
       b = b * Math.PI / 180;
       c = c * Math.PI / 180;
