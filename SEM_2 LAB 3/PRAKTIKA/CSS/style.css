@@ -1,0 +1,23 @@
+svg {
+    border: solid thin black;
+}
+
+.stg {
+    display: flex;
+}
+
+.stg_one {
+    display: flex;
+}
+
+.stg div{
+    padding-right: 25px;
+}
+
+.el{
+    font-weight: bold;
+}
+
+.stg_one span{
+    padding-right: 5px;
+}
