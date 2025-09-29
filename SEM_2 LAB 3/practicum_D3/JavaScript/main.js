@@ -6,8 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
     .attr("height", height);
     let pict //= drawSmile(svg);
 
-    document.getElementsByClassName('isVisible')[0].hidden = true
-    document.getElementsByClassName('isVisible')[1].hidden = true
+    let hide = document.getElementsByClassName('isVisible')
+    for (let i in hide) hide[i].hidden = true
+    document.getElementsByClassName('el')[1].children[0].children[0].hidden = true
 
    // let strs = d3.selectAll("ol")
    // strs.append("li").text(d3.select("li").text())
@@ -29,26 +30,49 @@ let draw = (dataForm) => {
 }
 
 function isAnimOn(dataForm) {
+    let hide = document.getElementsByClassName('isVisible')
     if (dataForm.checked == true) {
         document.getElementById('Draw').hidden = true
-        document.getElementsByClassName('isVisible')[0].hidden = false
-        document.getElementsByClassName('isVisible')[1].hidden = false   
+        for (let i in hide) hide[i].hidden = false  
     } else {
         document.getElementById('Draw').hidden = false
-        document.getElementsByClassName('isVisible')[0].hidden = true
-        document.getElementsByClassName('isVisible')[1].hidden = true       
+        for (let i in hide) hide[i].hidden = true      
+    }
+}
+
+function isPathOn(dataForm) {
+    if (dataForm.checked == true) {
+        document.getElementsByClassName('el')[0].hidden = true
+        document.getElementsByClassName('el')[1].hidden = false
+    } else {
+        document.getElementsByClassName('el')[0].hidden = false
+        document.getElementsByClassName('el')[1].hidden = true       
     }
 }
 
 let runAnimation = (dataForm) => {
     const svg = d3.select("svg")
-    let pict = drawSmile(svg);
-    pict.attr("transform",
-    `translate(${dataForm.cx.value}, ${dataForm.cy.value}`)
-    .transition(svg)
-    .duration(6000)
-    .ease(d3.easeBounce)
-    .attr("transform",
-    `translate(${dataForm.cx_finish.value}, ${dataForm.cy_finish.value})`);
+    let pict = drawSmile(svg);    
+    let animType = 'ease'+document.getElementsByTagName('select')[1].value
+
+    if (PathOn.checked == false) {
+      pict.attr("transform", `translate(${dataForm.cx.value},
+                                      ${dataForm.cy.value}) 
+                            scale(${dataForm.scale1.value}, ${dataForm.scale2.value})
+                            rotate(${dataForm.rotate.value})`)
+      .transition(svg)
+      .duration(6000)
+      .ease(d3[animType])
+      .attr("transform", `translate(${dataForm.cx_finish.value},
+        ${dataForm.cy_finish.value}) 
+scale(${dataForm.scale1_finish.value}, ${dataForm.scale2_finish.value})
+rotate(${dataForm.rotate_finish.value})`);
+    } else {
+        let path = drawPath(document.getElementById('whatIsPath').selectedIndex);
+        pict.transition()
+        .ease(d3[animType])
+        .duration(6000)
+        .attrTween('transform', translateAlong(path.node()));
+    }
     
 }

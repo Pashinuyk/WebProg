@@ -6,6 +6,7 @@
   <script src="https://d3js.org/d3.v7.js"> </script>
   <script src="JavaScript/main.js"></script>
   <script src="JavaScript/image.js"></script>
+  <script src="JavaScript/path.js"></script>
   <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
@@ -17,12 +18,25 @@
           <div class="stg_one">
             <span>
               <label for="cx">X: </label>
-              <input type="number" id="cx" value="300" max=600 min=0><br>
+              <input type="number" id="cx" value="300" max=600 min=0>
+              <span class="isVisible">до <input type="number" id="cx_finish" value="300" max=600 min=0></span><br>
               <label for="cy">Y: </label>
               <input type="number" id="cy" value="300" max=600 min=0>
+              <span class="isVisible">до <input type="number" id="cy_finish" value="300" max=600 min=0></span>
             </span>
           </div>
         </p>
+
+        <p class="el">Пути перемещения<br>
+          <div class="stg_one">
+            <span>
+              <select id="whatIsPath">
+                <option value="createPathG" selected> Буквой "Г" </option>
+                <option value="createPathCircle"> По кругу </option>
+              </select>
+            </span>
+          </div>
+        </p>        
       </div>   
 
       <div>
@@ -30,20 +44,23 @@
           <div class="stg_one">
             <span>
               <label for="scale1">По X: </label>
-              <input type="number" id="scale1" value="0" max=600 min=0><br>
+              <input type="number" id="scale1" value="1" max=100 min=0>
+              <span class="isVisible">до <input type="number" id="scale1_finish" value="1" max=100 min=0></span><br>
               <label for="scale2">По Y: </label> 
-              <input type="number" id="scale2" value="0" max=600 min=0> 
+              <input type="number" id="scale2" value="1" max=100 min=0> 
+              <span class="isVisible">до <input type="number" id="scale2_finish" value="1" max=100 min=0></span>
             </span>
           </div>
         </p>
       </div>  
 
       <div>
-        <p class="el">Поворот<br>  
+        <p class="el">Поворот<br>
           <div class="stg_one">
             <span>
             <label for="rotate">Угол: </label>
-            <input type="number" id="rotate" value="0" max=180 min=0> 
+            <input type="number" id="rotate" value="0" max=180 min=0>
+            <span class="isVisible">до <input type="number" id="rotate_finish" value="0" max=180 min=0></span> 
             </span>
           </div>   
         </p>
@@ -58,13 +75,15 @@
     </p>   
     <p>
     <input type="checkbox" id="AnimOn"
-                           onchange="isAnimOn(this)"> Включить анимацию?      
+                           onchange="isAnimOn(this)"> Включить анимацию?                             
 
       <select class="isVisible">
         <option value="Linear" selected> Linear </option>
         <option value="Elastic"> Elastic </option>
         <option value="Bounce"> Bounce </option>
       </select> 
+      <p class="isVisible"><input type="checkbox" id="PathOn"
+        onchange="isPathOn(this)"> Перемещение вдоль пути?</p> 
     </p>   
     <p>
       <input type="button" value="Анимировать" class="isVisible"
