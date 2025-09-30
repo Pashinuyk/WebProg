@@ -1,3 +1,68 @@
+document.addEventListener("DOMContentLoaded", function() {
+    for (let i=0;i<=2;i++) document.getElementById('errMsg'+i).hidden = true
+  /*  let newEl = document.getElementById('output');
+    let newEl2 = document.createElement('p');  
+    newEl2.id = 'errMsg0'
+    newEl.appendChild(newEl2)
+    newEl2.innerHTML = 'ААААА'
+    let newEl3 = document.getElementsByTagName('body')
+    let newEl4 = newEl2
+    newEl3[0].appendChild(newEl4)
+
+    alert(newEl3[0].firstElementChild.firstElementChild.children[1].children[1].previousElementSibling.innerHTML)
+    for (let i = 0; i< newEl3[0].firstElementChild.firstElementChild.children.length; i++) {
+        alert(`${ newEl3[0].firstElementChild.firstElementChild.children[i] }`)
+        alert(newEl3[0].firstElementChild.firstElementChild.children[i])
+    } */
+
+    //let newEl = document.getElementsByTagName('body')
+    //alert(newEl[0].firstElementChild.firstElementChild.firstElementChild.outerHTML)
+    
+   // let newEl = document.getElementsByTagName('form')
+   // newEl[0].remove()
+
+ //  let newEl = document.getElementsByClassName('input')
+ //  newEl[0].removeChild(newEl[0].firstElementChild)
+
+ let good = {
+    "ручка": [100, 50.60],
+    "карандаш": [120, 30.00],
+    "тетрадь": [200, 10.50]
+ }
+
+let arrGood = {}
+
+let goodkey = Object.keys(good)
+let goodVal;
+let goods = []
+let oneGood = {}
+
+for (let i=0; i<goodkey.length; i++) {
+    goodVal = good[goodkey[i]]
+
+    goods.push({
+        name: goodkey[i],
+        amount: good[goodkey[i]][1]
+    })
+    
+}
+
+/*for (let i=0; i<goods.length; i++) {
+    alert(goods[i].name+': '+goods[i].amount)
+} */
+
+
+
+})
+
+/*output.onmouseover = function() {
+    alert('ХУЙ')
+    let El = document.createElement('p')
+    El.innerHTML = 'SSSSSSSSSSSSSSSSSSS'
+    this.appendChild(El)
+}*/
+
+
 let dataType = 1;
 
 function reorganize(data) {
@@ -22,13 +87,8 @@ function reorganize(data) {
 
 
 
-function calculate(data) {
-    /* читаем входные данные */ 
+function calculate(data) { 
 
-   // err = document.getElementById('Input1');
-   // er = document.getElementsByTagName('span')
-    //er.innerHTML = ""
-   // err.appendChild(er)      
     let a = Number(data.input1.value); 
     let b = Number(data.input2.value);
     let c = Number(data.input3.value);
@@ -38,55 +98,40 @@ function calculate(data) {
     let isError = 0;
 
     if (a <= 0) {
-    //  err = document.getElementById('Input1');
-    // er = document.getElementsByTagName('span')
-    //  er.innerHTML = ""
-    //  err.appendChild(er)        
-
-     // err = document.getElementById('frF'); 
-     // err.innerHTML = "Неверное значение!";
-      err = document.getElementById('Input1');
-      er = document.createElement('span')
-      er.innerHTML = "Неверное значение!"
-      err.appendChild(er)
+      data.input1.classList.add("error");
       isError = 1;
+      document.getElementById('errMsg0').hidden = false;
     } 
     if ((b <= 0) || (b > 360 && dataType==2)) {
       data.input2.classList.add("error"); 
       isError = 1;    
-      
-      err = document.getElementById('secF'); 
-      err = document.getElementById('Input2');
-      er = document.createElement('span')
-      er.innerHTML = "Неверное значение!"
-      err.appendChild(er)  
+      document.getElementById('errMsg1').hidden = false;
     } 
     if ((c <= 0) || (c > 360 && dataType==2)) {
       data.input3.classList.add("error"); 
       isError = 1;
 
-      err = document.getElementById('thrF'); 
-      err = document.getElementById('Input3');
-      er = document.createElement('span')
-      er.innerHTML = "Неверное значение!"
-      err.appendChild(er)     
+      document.getElementById('errMsg2').hidden = false;   
     }  
 
-  /*  if (dataType == 1) {
-        if (a+b > c) {
-            data.input1.classList.add("error"); 
-            data.input2.classList.add("error"); 
+    if (dataType == 1 && isError == 0) {
+        if (a+b < c) {
+            data.input3.classList.add("error");  
+            document.getElementById('errMsg2').hidden = false;
+            document.getElementById('errMsg2').innerHTML = "Значение больше остальных сторон!"
             isError = 1;
-        } else if (a+c > b) {
-             data.input1.classList.add("error"); 
-            data.input3.classList.add("error"); 
+        } else if (a+c < b) {
+             data.input2.classList.add("error"); 
+             document.getElementById('errMsg1').hidden = false;
+             document.getElementById('errMsg1').innerHTML = "Значение больше остальных сторон!"
             isError = 1;           
-        } else if (b+c > a) {
-            data.input2.classList.add("error"); 
-            data.input3.classList.add("error"); 
+        } else if (b+c < a) {
+            data.input1.classList.add("error"); 
+            document.getElementById('errMsg0').hidden = false;
+            document.getElementById('errMsg0').innerHTML = "Значение больше остальных сторон!"
             isError = 1;
         }
-    }*/
+    }
 
     if ((data.task1.checked == 0) && (data.task2.checked == 0) && (data.task3.checked == 0) && (data.task4.checked == 0)) {
       document.getElementById("search").classList.add("errorSearch");
@@ -98,12 +143,22 @@ function calculate(data) {
     if ((dataType == 2) && ((Number(b)+Number(c)>=180))) {
         data.input2.classList.add("error"); 
         data.input3.classList.add("error"); 
+        document.getElementById('errMsg1').hidden = false;
+        document.getElementById('errMsg2').hidden = false;
         isError = 1;
     }
 
     if (isError == 1) {
         return false;
     }
+
+    for (let i=0;i<=2;i++) {
+        if (document.getElementById('errMsg'+i).innerHTML == 'Значение больше остальных сторон!') {
+          changeSelect(document.getElementById('Input'+(i+1)).children[1])
+        }
+      }  
+
+
     let p = 0;
     let s = 0;
 
@@ -113,9 +168,9 @@ function calculate(data) {
 
     if (dataType == 1) {
       p = (a+b+c)/2;
-      alert(p)
+     // alert(p)
       s = Math.sqrt(p*(p-a)*(p-b)*(p-c));
-      alert(s)
+     // alert(s)
     } else {
       b = b * Math.PI / 180;
       c = c * Math.PI / 180;
@@ -193,4 +248,10 @@ function clean(data) {
     data.input1.value = '';
     data.input2.value = '';
 }
+
+function changeSelect(dataL) {
+    dataL.classList.remove('error')
+    dataL.parentElement.nextSibling.hidden = true
+    dataL.parentElement.nextSibling.innerHTML = "Неверное значение!"
+} 
 

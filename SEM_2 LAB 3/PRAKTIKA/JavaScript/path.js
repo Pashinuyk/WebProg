@@ -84,12 +84,26 @@ let drawPath =(typePath) => {
     return paths;
 }    
 
-function translateAlong(path) {
+function translateAlong(path, dataForm) {
     const length = path.getTotalLength();
+    Dscale1 = dataForm.scale1_finish.value - dataForm.scale1.value
+    Dscale2 = dataForm.scale2_finish.value - dataForm.scale2.value
+    Drot += Drot
     return function() {
     return function(t) {
     const {x, y} = path.getPointAtLength(t * length);
-    return `translate(${x},${y})`;
+
+    const interpolateScaleX  = d3.interpolate(dataForm.scale1.value, dataForm.scale1_finish.value);
+    const interpolateScaleY  = d3.interpolate(dataForm.scale2.value, dataForm.scale2_finish.value);    
+    const interpolateRotate  = d3.interpolate(dataForm.rotate.value, dataForm.rotate_finish.value);
+
+    const scaleX  = interpolateScaleX(t);
+    const scaleY  = interpolateScaleY(t);
+    const rot = interpolateRotate(t)
+
+    return `translate(${x},${y}), 
+                                scale(${scaleX}, ${scaleY})
+                                rotate(${rot})`;
     }
     }
     }

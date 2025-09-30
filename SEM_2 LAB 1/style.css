@@ -1,5 +1,17 @@
+#errMsg0 {
+  color: red;
+}
+#errMsg1 {
+  color: red;
+}
+#errMsg2 {
+  color: red;
+}
+
+
+
 #output {
-  background-color: gray
+  background-color: gray;
 }
 
 .error { 
