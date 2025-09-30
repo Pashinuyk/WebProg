@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let pict //= drawSmile(svg);
 
     let hide = document.getElementsByClassName('isVisible')
-     for (let i in hide) hide[i].hidden = true
-     document.getElementsByClassName('el')[1].children[0].children[0].hidden = true
+    for (let i in hide) hide[i].hidden = true
+    document.getElementsByClassName('el')[1].children[0].children[0].hidden = true
 
    // let strs = d3.selectAll("ol")
    // strs.append("li").text(d3.select("li").text())
@@ -52,7 +52,7 @@ function isPathOn(dataForm) {
 
 let runAnimation = (dataForm) => {
     const svg = d3.select("svg")
-    let pict = drawSmile(svg);    
+    let pict = drawSmile(svg);   
     let animType = 'ease'+document.getElementsByTagName('select')[1].value
 
     if (PathOn.checked == false) {
@@ -68,11 +68,22 @@ let runAnimation = (dataForm) => {
 scale(${dataForm.scale1_finish.value}, ${dataForm.scale2_finish.value})
 rotate(${dataForm.rotate_finish.value})`);
     } else {
+        pict.attr("transform", `scale(${dataForm.scale1.value}, ${dataForm.scale2.value})
+                                rotate(${dataForm.rotate.value})`);         
         let path = drawPath(document.getElementById('whatIsPath').selectedIndex);
         pict.transition()
         .ease(d3[animType])
-        .duration(6000)
-        .attrTween('transform', translateAlong(path.node()));
+        .duration(document.getElementById('time').value*1000)
+        .attrTween('transform', translateAlong(path.node()), dataForm.scale1, dataForm.scale2,
+                   dataForm.scale1_finish.value, dataForm.scale2_finish.value)
+     //   .attrTween('transform', `rotate(${dataForm.rotate_finish.value})`)
+                               
+     //   pict.transition()
+     //   .duration(document.getElementById('time').value*1000) 
+     //   .attr("transform", `rotate(${dataForm.rotate_finish.value})`);                                     
+
+     //   scale(${dataForm.scale1.value}, ${dataForm.scale2.value})
+     //                       rotate(${dataForm.rotate.value})
     }
     
 }

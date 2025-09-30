@@ -11,16 +11,37 @@ function createPathG() {
     const width = svg.attr("width")
     const height = svg.attr("height")
     let data = [];
-    const padding = 100;
+    const padding = 480;
     //начальное положение рисунка
-    let posX = padding;
-    let posY = height - padding;
+    let posX = padding; //480
+    let posY = height - padding; //120
     const h = 5;
     // координаты y - уменьшаются, x - постоянны
-    while (posY > padding) {
+    while (posY < padding) {
     data.push( {x: posX, y: posY});
-    posY -= h;
+    posY += h;
+    //x=480, y=480
     }
+
+    while ((posY > (height - padding)) && (posX > (padding+(width-padding))/2)) {
+        data.push( {x: posX, y: posY});
+        posX -= h;
+        posY -= 2*h;
+        //x=300, y=120    
+    }
+            //120 < 480        //300 > (120)
+    while ((posY < padding) && (posX > (width-padding))) {
+        data.push( {x: posX, y: posY});
+        posX -= h;
+        posY += 2*h;   
+        //x=120, y=480     
+    }
+
+    while ((posY > height-padding)) {
+        data.push( {x: posX, y: posY});
+        posY -= h;   
+        //x=120, y=480     
+    }    
     // координаты y - постоянны, x - увеличиваются
     while (posX < width - padding) {
     data.push( {x: posX, y: posY});
@@ -30,7 +51,7 @@ function createPathG() {
 }
     // создаем массив точек, расположенных по кругу
 
-function createPathCircle() {
+/*function createPathCircle() {
     const svg = d3.select("svg")
     const width = svg.attr("width")
     const height = svg.attr("height")
@@ -44,11 +65,12 @@ function createPathCircle() {
     );
     }
     return data
-    }
+    }*/
     // создаем путь и отображаем его в svg-элементе
 let drawPath =(typePath) => {
     // создаем массив точек пути в зависимости от параметра
-    const dataPoints = createPathG();
+   // const dataPoints = (typePath == 0)? createPathG() : createPathCircle();
+    const dataPoints = createPathG()
     const line = d3.line()
       .x((d) => d.x)
       .y((d) => d.y);

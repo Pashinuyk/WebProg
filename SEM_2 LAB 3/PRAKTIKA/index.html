@@ -27,7 +27,7 @@
           </div>
         </p>
 
-      <!--  <p class="el">Пути перемещения<br>
+        <p class="el">Пути перемещения<br>
           <div class="stg_one">
             <span>
               <select id="whatIsPath">
@@ -36,7 +36,7 @@
               </select>
             </span>
           </div>
-        </p>  -->      
+        </p>        
       </div>   
 
       <div>
@@ -67,15 +67,16 @@
       </div>
 
       <div>
-        <p class="el">Время анимации<br>
+        <p class="el">Таймер<br>
           <div class="stg_one">
             <span>
             <label for="time">Сек: </label>
-            <input type="number" id="time" value="0" max=600 min=0>
+            <input type="number" id="time" value="0" max=600 min=0> 
             </span>
-          </div>   
+          </div>           
         </p>
-      </div>      
+      </div>
+
     </div>  
     <p>
       <input type="button" value="Нарисовать" id="Draw"
@@ -85,7 +86,8 @@
                          onClick="document.getElementsByTagName('svg')[0].innerHTML = ''">
     </p>   
     <p>
-    <input type="checkbox" id="AnimOn"> Включить анимацию?                             
+    <input type="checkbox" id="AnimOn"
+                           onchange="isAnimOn(this)"> Включить анимацию?                             
 
       <select class="isVisible">
         <option value="Linear" selected> Linear </option>
@@ -93,11 +95,11 @@
         <option value="Bounce"> Bounce </option>
       </select> 
       <p class="isVisible"><input type="checkbox" id="PathOn"
-        onchange="isPathOn(this)"> Перемещение вдоль пути?</p>
+        onchange="isPathOn(this)"> Перемещение вдоль пути?</p> 
     </p>   
     <p>
-        <input type="button" value="Анимировать" class="isVisible"
-                         onClick="runAnimation(this.parentNode.parentNode)">     
+      <input type="button" value="Анимировать" class="isVisible"
+                         onClick="runAnimation(this.parentNode.parentNode)">      
     </p>
   </form> 
 
