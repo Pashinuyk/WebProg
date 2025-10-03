@@ -1,0 +1,55 @@
+// Функция для создания строки заголовка таблицы
+const createHeaderRow = (data) => {
+  const tr = document.createElement('tr');
+  Object.keys(data[0]).forEach(key => {
+    const th = document.createElement('th');
+    th.textContent = key;
+    tr.appendChild(th);
+  });
+  return tr;
+};
+
+// Функция для создания строки данных таблицы
+const createDataRow = (item) => {
+  const tr = document.createElement('tr');
+  const values = Object.values(item);
+
+  values.forEach((val, i) => {
+    const td = document.createElement(i === 1 ? 'th' : 'th');
+    if (i === 1) {
+      // Вторая колонка — картинка
+      td.innerHTML = `<img src="${val}" alt="${values[0]}">`;
+    } else {
+      td.textContent = val;
+    }
+    tr.appendChild(td);
+  });
+
+  return tr;
+};
+
+// Главная функция создания таблицы на странице
+const createTable = (data, idTable) => {
+  const table = document.getElementById(idTable);
+  if (!table || data.length === 0) return;
+
+  // Очищаем таблицу перед добавлением новых строк
+  clearTable(idTable);
+
+  // Добавляем заголовок
+  table.appendChild(createHeaderRow(data));
+
+  // Добавляем строки с данными
+  data.forEach(item => {
+    table.appendChild(createDataRow(item));
+  });
+};
+
+// Функция для очистки таблицы
+const clearTable = (idTable) => {
+  const table = document.getElementById(idTable);
+  if (!table) return;
+  while (table.firstChild) {
+    table.removeChild(table.firstChild);
+  }
+};

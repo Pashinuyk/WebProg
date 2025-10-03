@@ -1,0 +1,70 @@
+const createSortArr = (data) =>
+  Array.from(data.getElementsByTagName('select'))
+    .map(select => {
+      const keySort = Number(select.value);
+      if (keySort === 0) return null;
+      const desc = document.getElementById(select.id + 'Desc').checked;
+      return { column: keySort - 1, order: desc };
+    })
+    .filter(Boolean);
+
+//сравнение
+const compareCells = (a, b, { column, order, type }) => {
+  const valA = a.cells[column].innerHTML;
+  const valB = b.cells[column].innerHTML;
+
+  const parsedA = type === 'number' ? parseFloat(valA) : valA;
+  const parsedB = type === 'number' ? parseFloat(valB) : valB;
+
+  if (parsedA === parsedB) return 0;
+  return order
+    ? parsedA < parsedB ? 1 : -1 
+    : parsedA > parsedB ? 1 : -1; 
+};
+
+//сама сортировка
+const sortTable = (idTable, data) => {
+  const sortArr = createSortArr(data);
+  if (sortArr.length === 0) return false;
+
+  const table = document.getElementById(idTable);
+  const rows = Array.from(table.rows);
+  const header = rows[0];
+  const rowData = rows.slice(1); 
+
+
+  const sortWithTypes = sortArr.map((rule, index) => {
+    const checkboxIndex = index * 2 + 1; 
+    const ascending = data[checkboxIndex]?.checked === false;
+    const sample = rowData[0]?.cells[rule.column]?.innerHTML;
+    const isNumeric = sample && !isNaN(sample.trim());
+    return { ...rule, order: !ascending, type: isNumeric ? 'number' : 'string' };
+  });
+
+
+  const sortedRows = [...rowData].sort((a, b) => {
+    for (const rule of sortWithTypes) {
+      const result = compareCells(a, b, rule);
+      if (result !== 0) return result;
+    }
+    return 0;
+  });
+
+
+  table.innerHTML = header.innerHTML;
+  sortedRows.forEach(row => table.appendChild(row));
+};
+
+
+const dropSort = (idTable, form) => {
+  Array.from(form.elements).forEach((el, i) => {
+    if (el.tagName === 'SELECT') el.value = '0';
+    if (el.type === 'checkbox') el.checked = false;
+  });
+
+  changeNextSelect('fieldsSecond', document.getElementById('fieldsFirst'));
+
+  clearTable(idTable);
+  createTable(consoles, idTable);
+  filterTable(consoles, idTable, reserv);
+};

@@ -1,0 +1,115 @@
+const correspond = {
+  "Название": "name",
+  "Тип": "type",
+  "Разработчик": "dev",
+  "Процессор": "cpu",
+  "Такт. частота процессора (МГц)": ["temp1", "temp2"],
+  "Оперативная памяти (МБ)": ["ram1", "ram2"],
+  "Продано (млн.)": ["year1", "year2"],
+  "Поколение": ["gen1", "gen2"],
+  "Год выпуска": ["year1", "year2"]
+};
+
+const dataFilter = (form) =>
+  Array.from(form.elements)
+    .slice(0, -1) // исключаем кнопку/последний элемент
+    .reduce((acc, item) => {
+      let value = item.value;
+
+      if (item.id === 'type') {
+        const typeMap = {
+          1: 'Домашняя',
+          2: 'Портативная',
+          3: 'Гибридная',
+          4: 'Аддон'
+        };
+        value = typeMap[value] || '';
+      } else if (item.type === 'text') {
+        value = value.toLowerCase();
+      } else if (item.type === 'number') {
+        const parsed = parseFloat(value);
+        if (!isNaN(parsed)) {
+          value = parsed;
+        } else {
+          const isMinField = ['temp1', 'ram1', 'year1', 'gen1'].includes(item.id);
+          const isMaxField = ['temp2', 'ram2', 'year2', 'gen2'].includes(item.id);
+          value = isMinField ? -Infinity : isMaxField ? Infinity : value;
+        }
+      }
+
+      return { ...acc, [item.id]: value };
+    }, {});
+
+    const filterTable = (data, idTable, form) => {
+  // Сброс сортировки
+  resetSortForm();
+
+  const filters = dataFilter(form);
+
+  const filteredData = data.filter(item => {
+    return Object.entries(item).every(([key, value]) => {
+      if (key === 'Изображение') return true;
+
+      const filterKey = correspond[key];
+      if (!filterKey) return true;
+
+      if (key === 'Тип') {
+        const expected = filters[filterKey];
+        return expected === 0 || value.includes(expected);
+      }
+
+      if (typeof value === 'string') {
+        return value.toLowerCase().includes(filters[filterKey]);
+      }
+
+      if (typeof value === 'number') {
+        const [minKey, maxKey] = Array.isArray(filterKey) ? filterKey : [filterKey, filterKey];
+        const min = filters[minKey];
+        const max = filters[maxKey];
+        return value >= min && value <= max;
+      }
+
+      return true;
+    });
+  });
+
+  clearTable(idTable);
+
+  reserv = form;
+
+  if (filteredData.length > 0) {
+    createTable(filteredData, idTable);
+  } else {
+    createTable(consoles[0], idTable);
+  }
+};
+
+const clearFilter = (formElement) => {
+  resetSortForm();
+
+  Array.from(formElement.elements)
+    .slice(0, -2)
+    .forEach((el, i) => {
+      if (el.id === 'type') {
+        el.value = 0;
+      } else {
+        el.value = '';
+      }
+    });
+
+  clearTable('list');
+  createTable(consoles, 'list');
+};
+
+const resetSortForm = () => {
+  const sortForm = document.getElementById('sort');
+  Array.from(sortForm.elements).forEach((el, i) => {
+    if (i === 0 || i === 2) {
+      el.value = 0;
+    } else if (el.type === 'checkbox') {
+      el.checked = false;
+    }
+  });
+
+  changeNextSelect('fieldsSecond', document.getElementById('fieldsFirst'));
+};

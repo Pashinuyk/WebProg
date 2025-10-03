@@ -1,17 +1,8 @@
-/*формируем массив для сортировки по уровням вида:
-[
-  {column: номер столбца,
-order: порядок сортировки (true по убыванию, false по возрастанию)
-},
-  {column: номер столбца,
-   order: порядок сортировки
-  }
-]
-*/
-let createSortArr = (data) => {
-  let sortArr = [];
-  let sortSelects = data.getElementsByTagName('select');
 
+let createSortArr = (data) => {
+ /*let sortArr = [];
+  let sortSelects = data.getElementsByTagName('select');
+ // for (let i=0; i< sortSelects.length; i++) alert(sortSelects[i].value)
   for (let i = 0; i < sortSelects.length; i++) {
     // получаем номер выбранной опции
     let keySort = sortSelects[i].value;
@@ -23,14 +14,21 @@ let createSortArr = (data) => {
     // имя флажка сформировано как имя поля SELECT и слова Desc
     let desc = document.getElementById(sortSelects[i].id + 'Desc').checked;
 
+    //alert(sortSelects.length)
     sortArr.push({column: keySort - 1, order: desc});
+    alert(sortArr[0])
   }
-  return sortArr;
+  return sortArr; */
+
+  const sortSelects = data.getElementsByTagName('select');
+  alert(sortSelects[0].value)
+
+
 };
 
 
 
-let sortTable = (idTable, data) => {
+let sortTable = (idTable, data) => { //idTable - list, data - данные формы
     // формируем управляющий массив для сортировки
     let sortArr = createSortArr(data);
     // сортировать таблицу не нужно, во всех полях выбрана опция Нет
@@ -51,7 +49,7 @@ let sortTable = (idTable, data) => {
         
         if (key < 5) {
 
-          if ((i == 0 && data[1].checked == false) || (i == 1 && data[3].checked == false) || (2 == 1 && data[5].checked == false)) {
+          if ((i == 0 && data[1].checked == false) || (i == 1 && data[3].checked == false) || (i == 2 && data[5].checked == false)) {
             if (first.cells[key].innerHTML > second.cells[key].innerHTML) {
               return 1;
             } else if (first.cells[key].innerHTML < second.cells[key].innerHTML){
@@ -67,7 +65,7 @@ let sortTable = (idTable, data) => {
           }
 
       } else {
-          if ((i == 0 && data[1].checked == false) || (i == 1 && data[3].checked == false) || (2 == 1 && data[5].checked == false)) {
+          if ((i == 0 && data[1].checked == false) || (i == 1 && data[3].checked == false) || (i == 2 && data[5].checked == false)) {
             if ((first.cells[key].innerHTML / 1) > (second.cells[key].innerHTML / 1)) {
               return 1;
             } else if ((first.cells[key].innerHTML / 1) < (second.cells[key].innerHTML / 1)){
@@ -112,7 +110,10 @@ let dropSort = (idTable, form) => {
     createTable(consoles, idTable);
     filterTable(consoles, idTable, reserv)
 
-}
+} 
+
+
+
 
 
 

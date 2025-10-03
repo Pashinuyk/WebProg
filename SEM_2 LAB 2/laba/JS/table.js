@@ -51,17 +51,4 @@ let clearTable = (idTable) => {
 
 
 
-let
 
-    /*function getParent(idElement){
-        let El = document.getElementById(idTable);
-        alert (El.children.length)
-        
-        while (element.parentNode){
-            element = element.parentNode;
-            alert(element);
-            count++
-        }
-    
-        return count;
-    }*/

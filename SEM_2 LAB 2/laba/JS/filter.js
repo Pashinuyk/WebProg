@@ -161,4 +161,5 @@ let clearFilter = (idTable) => {
 
   clearTable('list')
   createTable(consoles, 'list');  
-}
+} 
+
