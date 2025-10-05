@@ -95,12 +95,13 @@ let Dscale1
 let Dscale2
 let Drot
 
-//<--- 
+//<--- АНИМАЦИЯ
 let runAnimation = (dataForm) => {
     const svg = d3.select("svg")
     let pict = drawSmile(svg);    
     let animType = 'ease'+document.getElementsByTagName('select')[0].value
 
+    //<--- ЕСЛИ НЕ ПУТЬ
     if (PathOn.checked == false) {
       pict.attr("transform", `translate(${dataForm.cx.value},
                                       ${dataForm.cy.value}) 
@@ -113,11 +114,11 @@ let runAnimation = (dataForm) => {
         ${dataForm.cy_finish.value}) 
 scale(${dataForm.scale1_finish.value}, ${dataForm.scale2_finish.value})
 rotate(${dataForm.rotate_finish.value})`);
+    //<-- ЕСЛИ ПУТЬ
     } else {
         pict.attr("transform", `scale(${dataForm.scale1.value}, ${dataForm.scale2.value})
                                 rotate(${dataForm.rotate.value})`); 
-        let path = drawPath(document.getElementById('whatIsPath').selectedIndex);
-
+        let path = drawPath(createPathG);
         Dscale1 = dataForm.scale1_finish.value - dataForm.scale1.value
         Dscale2 = dataForm.scale2_finish.value - dataForm.scale2.value
         Drot = (dataForm.rotate_finish.value - dataForm.rotate.value)/path.node().getTotalLength()
