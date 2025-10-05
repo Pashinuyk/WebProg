@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     .attr("height", height);
     let pict //= drawSmile(svg);
 
+    //<--- ПРЯЧЕТ ЭЛЕМЕНТЫ, ПОЯВЛЯЮЩИЕСЯ ПРИ ВКЛЮЧЕНИИ АНИМАЦИИ
     let hide = document.getElementsByClassName('isVisible')
     for (let i in hide) hide[i].hidden = true
     document.getElementsByClassName('el')[1].children[0].children[0].hidden = true
@@ -23,12 +24,14 @@ document.addEventListener("DOMContentLoaded", function() {
 let draw = (dataForm) => {
     const svg = d3.select("svg")
     let pict = drawSmile(svg)
+    //<--- РАЗМЕЩЕНИЕ ПО УКАЗ. КООРДИНАТАМ
     pict.attr("transform", `translate(${dataForm.cx.value},
                                       ${dataForm.cy.value}) 
                             scale(${dataForm.scale1.value}, ${dataForm.scale2.value})
                             rotate(${dataForm.rotate.value})`);
 }
 
+//<--- ВКЛЮЧАЕТ ДИАПАЗОН ЗНАЧЕНИЙ И ПРЯЧЕТ КНОПКУ "НАРИСОВАТЬ"
 function isAnimOn(dataForm) {
     let hide = document.getElementsByClassName('isVisible')
     if (dataForm.checked == true) {
@@ -92,10 +95,11 @@ let Dscale1
 let Dscale2
 let Drot
 
+//<--- 
 let runAnimation = (dataForm) => {
     const svg = d3.select("svg")
     let pict = drawSmile(svg);    
-    let animType = 'ease'+document.getElementsByTagName('select')[1].value
+    let animType = 'ease'+document.getElementsByTagName('select')[0].value
 
     if (PathOn.checked == false) {
       pict.attr("transform", `translate(${dataForm.cx.value},
