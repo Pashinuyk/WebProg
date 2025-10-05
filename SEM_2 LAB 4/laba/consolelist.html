@@ -1,0 +1,128 @@
+﻿<!doctype html>
+<html lang="ru">
+    <head>
+      <title><h1 align="center">
+        Список консолей
+      </h1></title>
+      <script src="http://d3js.org/d3.v7.min.js"> </script>
+      <script src="JS/data.js"></script>
+      <script src="JS/main.js"></script>
+      <script src="JS/table.js"></script>
+      <script src="JS/filter.js"></script>
+      <script src="JS/sort.js"></script>   
+      <script src="JS/chart.js"></script> 
+      <link rel="stylesheet" href="CSS/style.css">   
+    </head>
+  
+  <body>
+    <hr>
+    <a href="first.html">Самые продаваемые игровые консоли</a><br><a href="#consoles">Список игровых консолей</a><hr>
+    
+    <details>
+      <summary>График</summary>
+      <p>
+      <b>Значение по оси OX:</b><br>
+      <!---  <label><input type="checkbox" name="razrab" value="razrab">Разработчик</label><br>
+        <label><input type="checkbox" name="type" value="year">Год выпуска</label><br>
+        <label><input type="checkbox" name="gen" value="gen">Поколение</label>-->
+        <label><input type="radio" name="ox" value="Разработчик">Разработчик</label><br>
+        <label><input type="radio" name="ox" value="Год выпуска">Год выпуска</label><br>
+        <label><input type="radio" name="ox" value="Поколение">Поколение</label>        
+      </p>
+      
+      <p>
+      <b>Результат:</b><br>
+        <label><input type="radio" name="res" value="sells"
+          onClick="resType=0">Суммарные продажи</label><br>
+        <label><input type="radio" name="res" value="mem"
+          onClick=resType=1>Максимальная опер. память</label>
+      </p>
+
+      <p class="form-group">
+        <label for="chart-type">Тип графика:</label>
+        <select id="chart-type">
+          <option value="scatter">Точечная</option>
+          <option value="bar">Гистограмма</option>
+        </select>
+      </p>      
+      <input type="submit" value="Подтвердить"
+             onClick="drawGraph(consoles)">
+      <svg></svg>
+    </details>
+    
+    <details>
+      <summary>Фильтр</summary>
+      <form id="filter">                                                                        <!-- ФИЛЬТРАЦИЯ-->
+        <label for="name">Название: <input type="text" id="name"></label><br>
+      
+        Тип: <select id="type">
+          <option value="0">Нет</option>
+          <option value="1">Домашняя</option>
+          <option value="2">Портативная</option>
+          <option value="3">Гибридная</option>
+          <option value="4">Аддон</option>
+        </select><br>
+      
+        <label for="dev">Разработчик: <input type="text" id="dev"></label><br>
+      
+        <label>Процессор: <input type="text" id="cpu"></label><br>
+      
+        <label for="temp1">Частота процессора:</label> 
+            от <input type="number" min="0" id="temp1">
+            до <input type="number" min="0" id="temp2"><br>
+      
+        <label for="ram1">RAM:</label> 
+            от <input type="number" min="0" id="ram1"> 
+            до <input type="number" min="0" id="ram2"><br>
+        
+        <label for="gen1">Поколение: 
+            от <input type="number" min="1" max="9" id="gen1">
+            до <input type="number" min="1" max="9" id="gen2"><br>
+     
+        <label for="year1">Год выпуска:</label> 
+            от <input type="number" min="0" id="year1">
+            до <input type="number" min="0" id="year2"><br>
+     
+        <input type="button" value="Применить"
+           onClick="filterTable(consoles, 'list', this.form)">
+           <input type="button" value="Очистить фильтры"
+           onClick="clearFilter(this.form)">           
+     </form>
+      
+    </details>
+    
+    <details>
+      <summary>Сортировка</summary>
+      <form id="sort">                                                      <!--СОРТИРОВКА -->
+        <label>Первый уровень:
+        <select id="fieldsFirst"
+          onchange="changeNextSelect('fieldsSecond', this)">
+        </select></label>
+        <label>по убыванию?<input type="checkbox" id="fieldsFirstDesc"></label><br>
+      
+         <label>Второй уровень:
+        <select id="fieldsSecond"
+          onchange="changeNextSelect('fieldsThird', this)">
+        </select></label>
+        <label>по убыванию?<input type="checkbox" id="fieldsSecondDesc"></label><br>  
+      
+        <label>Третий уровень:
+        <select id="fieldsThird">
+        </select></label>
+        <label>по убыванию?<input type="checkbox" id="fieldsThirdDesc"></label><br> 
+
+        <input type="button" value="Сортировать"
+          onClick="sortTable('list', document.getElementById('sort'))">   
+        <input type="button" value="Сбросить сортировку"
+          onClick="dropSort('list', document.getElementById('sort'))">               
+      </form>  
+
+    </details>    
+    
+    <!--<form id="consoles"></a>-->
+    <table id='list' border="1" cellpadding ="10" cellspacing="0" align="center">
+
+      
+    </table>
+  </body>
+</html>

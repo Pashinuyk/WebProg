@@ -1,0 +1,68 @@
+body {
+  border: solid 2px #bbbbbb;  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+}
+
+summer {
+  display: block;
+  font-weight: bold;
+  text-align: center;
+}
+
+div {
+  display: flex;
+  gap: 20px;
+}
+
+#sort {
+  margin-top: auto;
+}
+
+table {  /*ДОДЕЛАТЬ ОТСТУП ОТ ГРАНИЦЫ*/
+  border-spacing: 0;
+}
+
+tr {
+  background-color: #efefef;
+  text-align: left;
+}
+
+tr th {
+  font-weight: normal;
+  padding-left: 8px;
+  padding-right: 5px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin: 5px;
+
+  border: solid thin #dddddd;
+}
+
+tr:first-child {
+  background-color: #d3d3d3;
+  text-align: center;
+}
+
+tr:first-child th {
+  font-weight: bold;
+}
+
+
+
+svg {
+  width: 800px;
+  height: 400px;
+}
+
+svg path, line {
+  fill: none;
+  stroke: black;
+  width: 1px;
+}
+
+svg text {
+  font: 8px Verdana;
+}
