@@ -52,7 +52,9 @@ function drawGraph(data) { //<--- data - массив buildings
 
     // рисуем график
     //createChart(svg, arrGraph, scX, scY, attr_area, "blue", 0)
-    createChart(svg, arrGraph, scX, scY, attr_area, "red", 1)
+    if (document.getElementById('chart-type').value == 'scatter') createScatter(svg, arrGraph, scX, scY, attr_area, "red")
+    else if (document.getElementById('chart-type').value == 'bar') createBar(svg, arrGraph, scX, scY, attr_area, "red")
+
 }
 
 function createAxis(svg, data, attr_area){
@@ -94,23 +96,50 @@ function createAxis(svg, data, attr_area){
     return [scaleX, scaleY]
 }
 
-function createChart(svg, data, scaleX, scaleY, attr_area, color, ind) {
+function createScatter(svg, data, scaleX, scaleY, attr_area, color) {
     const r = 4;
 
     svg.selectAll(".dot")
       .data(data)
       .enter()
-    /*  .append("circle")
+      .append("circle")
       .attr("r", r)
       .attr("cx", d => scaleX(d.labelX) + scaleX.bandwidth() / 2)
-      .attr("cy", d => scaleY(d.values)) */
-      .append("rect")
-      .attr("x", d => (scaleX(d.labelX) + scaleX.bandwidth() * 0.35) + 10.7)
-      .attr("y", d => scaleY(d.values))
-      .attr("width", r)
-      .attr("height", d => attr_area.height - 2 * attr_area.marginY - scaleY(d.values))     
+      .attr("cy", d => scaleY(d.values))    
       .attr("transform", `translate(${attr_area.marginX},
                                     ${attr_area.marginY})`)
       .style("fill", color)
+}
 
+/*function createBar(svg, data, scaleX, scaleY, attr_area, color) {
+  const r = 5;
+
+  svg.selectAll(".dot")
+    .data(data)
+    .enter()
+
+    .append("rect")
+    .attr("x", d => (scaleX(d.labelX) + scaleX.bandwidth() * 0.475))//scaleX.bandwidth() * 0.35) + 10.7)
+    .attr("y", d => scaleY(d.values))
+    .attr("width", r)
+    .attr("height", d => attr_area.height - 2 * attr_area.marginY - scaleY(d.values))     
+    .attr("transform", `translate(${attr_area.marginX},
+                                  ${attr_area.marginY})`)
+    .style("fill", color)
+
+}*/
+
+function createBar(svg, data, scaleX, scaleY, attr_area, color) {
+ // alert(data.length)
+ // alert(attr_area.width - 2 * attr_area.marginX)
+  svg.selectAll(".bar")
+    .data(data)
+    .enter()
+    .append("rect")
+    .attr("class", "bar")
+    .attr("x", d => scaleX(d.labelX) + attr_area.marginX + scaleX.bandwidth() * 0.3) // центрируем
+    .attr("y", d => scaleY(d.values) + attr_area.marginY)
+    .attr("width", scaleX.bandwidth() * 0.4) 
+    .attr("height", d => attr_area.height - attr_area.marginY * 2 - scaleY(d.values))
+    .attr("fill", color);
 }
