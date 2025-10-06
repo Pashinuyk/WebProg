@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     setSortSelects(consoles[0], document.getElementById("sort"))
     createTable(consoles, 'list');
+
+    reserv = document.getElementById('filter')
  //   drawGraph(consoles)
    // filterTable(consoles, 'list', document.getElementById('filter'));
 })

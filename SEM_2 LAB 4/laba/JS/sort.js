@@ -110,7 +110,7 @@ let dropSort = (idTable, form) => {
 
     clearTable(idTable)
     createTable(consoles, idTable);
-    filterTable(consoles, idTable, reserv)
+    filterStart(consoles, idTable, reserv)
 
 }
 

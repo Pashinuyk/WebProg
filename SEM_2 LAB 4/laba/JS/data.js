@@ -311,7 +311,102 @@ consoles= [
         "Продано (млн.)": 21.74,
         "Поколение": 6,
         "Год выпуска": 2001
-    }     
-    
+    },
+    {
+        "Название": "Game Boy",
+        "Изображение": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Game-Boy-FL.png/800px-Game-Boy-FL.png",
+        "Тип": "Портативная",
+        "Разработчик": "Nintendo",
+        "Процессор": "Sharp SM83",
+        "Такт. частота процессора (МГц)": 4.2,
+        "Оперативная памяти (МБ)": 0.008,
+        "Продано (млн.)": 118.69,
+        "Поколение": 4,
+        "Год выпуска": 1989        
+    }, 
+    {
+        "Название": "Sega Nomad",
+        "Изображение": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Sega-Nomad-Front.jpg/1024px-Sega-Nomad-Front.jpg",
+        "Тип": "Портативная",
+        "Разработчик": "Sega",
+        "Процессор": "Motorola 68000",
+        "Такт. частота процессора (МГц)": 7.6,
+        "Оперативная памяти (МБ)": 0.064,
+        "Продано (млн.)": 1.0,
+        "Поколение": 5,
+        "Год выпуска": 1995        
+    },
+    {
+        "Название": "Magnavox Odyssey",
+        "Изображение": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Magnavox-Odyssey-Console-Set.png/1920px-Magnavox-Odyssey-Console-Set.png",
+        "Тип": "Домашняя",
+        "Разработчик": "Magnavox",
+        "Процессор": "Аналогово-дискретная электронная схема",
+        "Такт. частота процессора (МГц)": 0.0,
+        "Оперативная памяти (МБ)": 0.0,
+        "Продано (млн.)": 0.35,
+        "Поколение": 1,
+        "Год выпуска": 1972        
+    },
+    {
+        "Название": "Fairchild Channel F",
+        "Изображение": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Fairchild-Channel-F.jpg/1024px-Fairchild-Channel-F.jpg",
+        "Тип": "Домашняя",
+        "Разработчик": "Fairchild Camera and Instrument",
+        "Процессор": "Fairchild F8",
+        "Такт. частота процессора (МГц)": 1.79,
+        "Оперативная памяти (МБ)": 0.00064,
+        "Продано (млн.)": 0.31,
+        "Поколение": 2,
+        "Год выпуска": 1976        
+    },
+    {
+        "Название": "ColecoVision",
+        "Изображение": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/ColecoVision-wController-L.jpg/1024px-ColecoVision-wController-L.jpg",
+        "Тип": "Домашняя",
+        "Разработчик": "Coleco",
+        "Процессор": "Zilog Z80",
+        "Такт. частота процессора (МГц)": 3.58,
+        "Оперативная памяти (МБ)": 0.001,
+        "Продано (млн.)": 2.0,
+        "Поколение": 2,
+        "Год выпуска": 1982        
+    },
+    {
+        "Название": "Intellivision",
+        "Изображение": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Intellivision-Console-Set.png/1024px-Intellivision-Console-Set.png",
+        "Тип": "Домашняя",
+        "Разработчик": "Mattel Electronics",
+        "Процессор": "GI CP1610",
+        "Такт. частота процессора (МГц)": 3.3,
+        "Оперативная памяти (МБ)": 0.001,
+        "Продано (млн.)": 3.75,
+        "Поколение": 2,
+        "Год выпуска": 1979        
+    },
+    {
+        "Название": "PC Engine CD-ROM",
+        "Изображение": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/NEC-TurboGrafx-16-CD-FL.jpg/1024px-NEC-TurboGrafx-16-CD-FL.jpg",
+        "Тип": "Аддон",
+        "Разработчик": "NEC",
+        "Процессор": "Отсутствует",
+        "Такт. частота процессора (МГц)": 0.0,
+        "Оперативная памяти (МБ)": 0.064,
+        "Продано (млн.)": 0.25,
+        "Поколение": 4,
+        "Год выпуска": 1988        
+    },       
+    {
+        "Название": "Nintendo DS",
+        "Изображение": "https://upload.wikimedia.org/wikipedia/commons/8/82/Nintendo_DS_Trans.png",
+        "Тип": "Портативная",
+        "Разработчик": "Nintendo",
+        "Процессор": "ARM946E-S",
+        "Такт. частота процессора (МГц)": 67.0,
+        "Оперативная памяти (МБ)": 4.0,
+        "Продано (млн.)": 154.02,
+        "Поколение": 7,
+        "Год выпуска": 2004
+    }                                                    
     
 ]

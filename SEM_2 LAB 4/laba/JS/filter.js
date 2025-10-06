@@ -12,7 +12,32 @@ let correspond = {
 
 }
 
-let reserv = document.getElementById('filter')
+let reserv;
+
+let filterStart = (data, idTable, dataForm) => {
+
+  let form = document.getElementById('sort')  //<--- ОБНУЛЕНИЕ СОРТИРОВКИ                     
+  for (let i=0;i<4;i++)
+    if (i==0 || i==2) {
+      form[i].value = 0
+    } else {
+      form[i].checked = false
+    }
+  changeNextSelect('fieldsSecond', document.getElementById('fieldsFirst')) //<--- ОБНУЛЕНИЕ СОРТИРОВКИ  
+  tableFilter = filterTable(data, idTable, dataForm) 
+
+  reserv = dataForm
+  clearTable(idTable)
+  // показать на странице таблицу с отфильтрованными строками
+  if (tableFilter.length > 0) {
+    console.log(tableFilter.length)
+    createTable(tableFilter, idTable);
+  } 
+  else {
+    createTable(consoles[0], idTable);
+  }
+
+}
 
 let dataFilter = (dataForm) => {   //<--- ДАННЫЕ ИЗ ПОЛЕЙ ФОРМЫ "ФИЛЬТРАЦИЯ"
   let dictFilter = {}; //<-- КЛЮЧИ МАССИВА - ID'Ы ПОЛЕЙ (ИМЯ - NAME, ТИП - TYPE И Т.Д.), ЗНАЧЕНИЯ - СОДЕРЖИМОЕЙ ПОЛЕЙ
@@ -68,15 +93,6 @@ let dataFilter = (dataForm) => {   //<--- ДАННЫЕ ИЗ ПОЛЕЙ ФОРМ�
   
 let filterTable = (data, idTable, dataForm) =>{   // фильтрация таблицы
 
-  let form = document.getElementById('sort')  //<--- ОБНУЛЕНИЕ СОРТИРОВКИ                     
-  for (let i=0;i<4;i++)
-    if (i==0 || i==2) {
-      form[i].value = 0
-    } else {
-      form[i].checked = false
-    }
-  changeNextSelect('fieldsSecond', document.getElementById('fieldsFirst')) //<--- ОБНУЛЕНИЕ СОРТИРОВКИ
-
   // получаем данные из полей формы
   let datafilter = dataFilter(dataForm); //<--- ДАННЫЕ ИЗ ПОЛЕЙ ФОРМЫ
   console.log(datafilter)
@@ -121,17 +137,8 @@ let filterTable = (data, idTable, dataForm) =>{   // фильтрация таб
 
     return result;
   });
-  reserv = dataForm
 
-  clearTable(idTable)
-
-  // показать на странице таблицу с отфильтрованными строками
-  if (tableFilter.length > 0) {
-    console.log(tableFilter.length)
-    createTable(tableFilter, idTable);
-  } else {
-    createTable(consoles[0], idTable);
-  }
+  return tableFilter
 
  // console.log(reserv)
 }  

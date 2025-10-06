@@ -46,7 +46,7 @@
         </select>
       </p>      
       <input type="submit" value="Подтвердить"
-             onClick="drawGraph(consoles)">
+             onClick="drawGraph(filterTable(consoles, 'list', reserv))">
       <svg></svg>
     </details>
     
@@ -84,7 +84,7 @@
             до <input type="number" min="0" id="year2"><br>
      
         <input type="button" value="Применить"
-           onClick="filterTable(consoles, 'list', this.form)">
+           onClick="filterStart(consoles, 'list', this.form)">
            <input type="button" value="Очистить фильтры"
            onClick="clearFilter(this.form)">           
      </form>
