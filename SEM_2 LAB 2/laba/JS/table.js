@@ -49,6 +49,3 @@ let clearTable = (idTable) => {
 
 }
 
-
-
-

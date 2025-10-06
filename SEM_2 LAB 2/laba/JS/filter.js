@@ -14,11 +14,11 @@ let correspond = {
 
 let reserv = document.getElementById('filter')
 
-let dataFilter = (dataForm) => {   //фильтрация данных
-  let dictFilter = {};
+let dataFilter = (dataForm) => {   //<--- ИЗВЛЕЧЕНИЕ ДАННЫХ ИЗ ПОЛЕЙ ФОРМЫ "ФИЛЬТРАЦИЯ"
+  let dictFilter = {}; //<-- КЛЮЧИ МАССИВА - ID'Ы ПОЛЕЙ (ИМЯ - NAME, ТИП - TYPE И Т.Д.), ЗНАЧЕНИЯ - СОДЕРЖИМОЕЙ ПОЛЕЙ
 
-  // перебираем все элементы формы с фильтрами
-  for(let j = 0; j < dataForm.elements.length-1; j++) {
+
+  for(let j = 0; j < dataForm.elements.length-1; j++) {   //<--- ПЕРЕБИРАЮТСЯ ВСЕ ПОЛЯ ФОРМЫ
   // выделяем очередной элемент формы
     let item = dataForm.elements[j];
 
@@ -26,38 +26,24 @@ let dataFilter = (dataForm) => {   //фильтрация данных
     let valInput = item.value;
   // если поле типа text - приводим его значение к нижнему регистру
 
-    if (item.id == 'type') {
-      valInput = item.value
-      if (valInput == 1) {
-        valInput = 'Домашняя'
-      } else if (valInput == 2) {
-        valInput = 'Портативная'
-      } else if (valInput == 3) {
-        valInput = 'Гибридная'
-      } else if (valInput == 4) {
-        valInput = 'Аддон'
-      }
-
-
-    } else {
-
-    if (item.type == "text") {
+    if (item.type == "text") { //<--- ПРЕОБРАЗОВАНИЕ ЗНАЧЕНИЯ ЭЛЕМЕНТА В ЗАВИСИМОСТИ ОТ ТИПА ПОЛЯ
       valInput = valInput.toLowerCase();
-    } else if (item.type == "number") {
+    } 
+    else if (item.type == "number") {
       if (!isNaN(parseFloat(valInput))) {
         valInput = Number(valInput)
-      } else {
+      } 
+      else {
         if (item.id=='temp1' || item.id=='ram1' || item.id=='year1' || item.id=='gen1') {
           valInput = -Infinity
-        } else if (item.id=='temp2' || item.id=='ram2' || item.id=='year2' || item.id=='gen2') {
+        } 
+        else if (item.id=='temp2' || item.id=='ram2' || item.id=='year2' || item.id=='gen2') {
           valInput = Infinity
         }
       }
     } 
-    }
-    //alert(valInput+' '+item.type)
-
-  // формируем очередной элемент ассоциативного массива
+    
+    // формируем очередной элемент ассоциативного массива
     dictFilter[item.id] = valInput;
 
   }
@@ -66,100 +52,87 @@ let dataFilter = (dataForm) => {   //фильтрация данных
 
 
   
-let filterTable = (data, idTable, dataForm) =>{   // фильтрация таблицы
+let filterTable = (data, idTable, dataForm) =>{   //<--- ГЛАВНАЯ ФУНКЦИЯ СОРТИРОВКИ
 
-  let form = document.getElementById('sort')                       
+  let form = document.getElementById('sort')  //<--- ОБНУЛЕНИЕ СОРТИРОВКИ                     
   for (let i=0;i<4;i++)
     if (i==0 || i==2) {
       form[i].value = 0
     } else {
       form[i].checked = false
     }
-    changeNextSelect('fieldsSecond', document.getElementById('fieldsFirst'))
+  changeNextSelect('fieldsSecond', document.getElementById('fieldsFirst')) //<--- ОБНУЛЕНИЕ СОРТИРОВКИ
 
   // получаем данные из полей формы
-  let datafilter = dataFilter(dataForm);
-  // выбираем данные соответствующие фильтру и формируем таблицу из них
-  let tableFilter = data.filter(item => {
+  let datafilter = dataFilter(dataForm); //<--- ДАННЫЕ ИЗ ПОЛЕЙ ФОРМЫ
+  console.log(datafilter)
+
+  let tableFilter = data.filter(item => {  //<--- ИЗ ТАБЛИЦЫ ПОСТЕПЕННО БЕРЁТСЯ КАЖДАЯ СТРОКА И СРАВНИВАЕТСЯ С datafilter
     let result = true;
     // строка соответствует фильтру, если сравнение всех значения из input
     // со значением ячейки очередной строки - истина
-    for(let key in item) {
+    for(let key in item) { //<--- ИЗ СТРОКИ БЕРЁТСЯ КАЖДОЕ ПОЛЕ И СРАВНИВАЕТСЯ С СООТВЕТСТВУЮЩИМ ИЗ datafilter
       let val = item[key];
       
-     // alert(Object.keys(item)+'   '+item[key])
-     // alert(datafilter[correspond['Год'][1]])
       // текстовые поля проверяем на вхождение
-     // alert('corr '+correspond[key].value+'   '+item[key])
-      if (key == 'Изображение' || (key == "Тип" && datafilter[correspond[key]] == 0)) { 
-        continue
-      }
-     // alert('corr '+correspond[key]+'   '+item[key])
+      if (key == 'Изображение' || (key == "Тип" && datafilter[correspond[key]] == 'Нет')) continue
 
-     if (key == 'Тип') {
-     // alert(datafilter[correspond[key]])
-      val = item[key]
+      if (key == 'Тип') {
+        if (val != datafilter['type']) result = false
+      } 
+      else {
+        if (typeof val == 'string') {
+          val = val.toLowerCase()
+          if (val.indexOf(datafilter[correspond[key]]) == -1) result = false //<--- indexOf(...) - ПОИСК ПОДСТРОКИ В СТРОКЕ. correspot[key] - ПОИСК КЛЮЧА
+        }
 
-      //alert(val+' '+datafilter[correspond[key]])
-      result &&= val.indexOf(datafilter[correspond[key]]) !== -1 
-     } else {
+        if (typeof val == 'number') {
+          val = Number(val)
+          if (key == 'Год выпуска') console.log(val+' >= '+datafilter[correspond[key][0]]+' AND '+val+' <= '+datafilter[correspond[key][1]])
 
-      if (typeof val == 'string') {
-        val = item[key].toLowerCase()
-      //  alert(key+' '+val.indexOf(datafilter[correspond[key]]))
-        //alert(key+' '+datafilter[correspond[key]])
-        result &&= val.indexOf(datafilter[correspond[key]]) !== -1
-      }
+          if (!((val >= datafilter[correspond[key][0]]) && (val <= datafilter[correspond[key][1]]))) result = false 
+        }
+      }  
+     if (result == false) break
+    }
 
-      if (typeof val == 'number') {
-        val = Number(item[key])
-        //alert(correspond[key])
-        if (!(val >= datafilter[correspond[key][0]] && val <= datafilter[correspond[key][1]])) {
-          result = false 
-        } 
-       // alert(val+' '+result)
-      }
-     }  
-
-  }
-  return result;
+    return result;
   });
+
+  reserv = dataForm
+
   clearTable(idTable)
 
   // показать на странице таблицу с отфильтрованными строками
- //alert(tableFilter.length)
-
- reserv = dataForm
-
-
-  if (tableFilter.length > 0) {
+  if (tableFilter.length != 0) {
+    console.log(tableFilter.length)
     createTable(tableFilter, idTable);
   } else {
     createTable(consoles[0], idTable);
   }
+
+ // console.log(reserv)
 }  
 
-let clearFilter = (idTable) => {
+let clearFilter = (idTable) => { //<--- ЧИСТКА ФИЛЬТРОВ
 
-  let form = document.getElementById('sort')
+  let form = document.getElementById('sort') //<--- ЧИСТКА ЗНАЧЕНИЙ ФОРМЫ "СОРТИРОВКА"
   for (let i=0;i<4;i++)
     if (i==0 || i==2) {
       form[i].value = 0
     } else {
       form[i].checked = false
     }
-  changeNextSelect('fieldsSecond', document.getElementById('fieldsFirst'))
+  changeNextSelect('fieldsSecond', document.getElementById('fieldsFirst')) //<--- ОБНУЛЕНИЕ СОРТИРОВКИ
 
-  for (let i=0; i<idTable.elements.length-2; i++) {
+  for (let i=0; i<idTable.elements.length-2; i++) { //<--- ЧИСТКА ЗНАЧЕНИЙ ФОРМЫ "ФИЛЬТРЫ"
     if (i == 1) {
-      idTable.elements[i].value = 0
+      idTable.elements[i].value = 'Нет'
     } else {
       idTable.elements[i].value = ''
     }
-   // idTable.elements[i].value = ''
   }
 
   clearTable('list')
   createTable(consoles, 'list');  
-} 
-
+}

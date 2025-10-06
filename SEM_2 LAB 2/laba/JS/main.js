@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function() {
     setSortSelects(consoles[0], document.getElementById("sort"))
     createTable(consoles, 'list');
    // filterTable(consoles, 'list', document.getElementById('filter'));
-  // alert('1')
 })
 
 
@@ -86,5 +85,3 @@ let changeNextSelect = (nextSelectId, curSelect) => {
       }  
     }
 }
-
-
