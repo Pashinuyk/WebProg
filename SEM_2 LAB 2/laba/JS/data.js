@@ -407,6 +407,30 @@ consoles= [
         "Продано (млн.)": 154.02,
         "Поколение": 7,
         "Год выпуска": 2004
-    }                                                    
+    },
+    {
+        "Название": "PlayStation 3",
+        "Изображение": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Sony-PlayStation-3-CECHA01-wController-L.jpg/1024px-Sony-PlayStation-3-CECHA01-wController-L.jpg",
+        "Тип": "Домашняя",
+        "Разработчик": "Sony",
+        "Процессор": "Cell Broadband Engine",
+        "Такт. частота процессора (МГц)": 3200.0,
+        "Оперативная памяти (МБ)": 256.0,
+        "Продано (млн.)": 87.4,
+        "Поколение": 7,
+        "Год выпуска": 2006
+    },
+    {
+        "Название": "PlayStation 4",
+        "Изображение": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/PS4-Console-wDS4.jpg/1024px-PS4-Console-wDS4.jpg",
+        "Тип": "Домашняя",
+        "Разработчик": "Sony",
+        "Процессор": "AMD Jaguar, 8-core",
+        "Такт. частота процессора (МГц)": 1600.0,
+        "Оперативная памяти (МБ)": 8000.0,
+        "Продано (млн.)": 113.5,
+        "Поколение": 8,
+        "Год выпуска": 2013
+    }                                                                      
     
 ]
