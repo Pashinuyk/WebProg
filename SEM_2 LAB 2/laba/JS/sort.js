@@ -22,7 +22,8 @@ let createSortArr = (data) => {   //<--- ИЗВЛЕЧЕНИЕ ЗНАЧЕНИЙ �
     // имя флажка сформировано как имя поля SELECT и слова Desc
     let desc = document.getElementById(sortSelects[i].id + 'Desc').checked;
 
-    sortArr.push({column: keySort - 1, order: desc});   //<--- АССОЦИАЦ. МАССИВ - column ЭТО ВЫБРАННОЕ ЗНАЧЕНИЕ, order - УБЫВАНИЕ ИЛИ НЕТ
+    sortArr.push({column: keySort - 1, order: desc});   //<--- АССОЦИАЦ. МАССИВ: column - ЭТО ВЫБРАННОЕ ЗНАЧЕНИЕ (ЦИФРА, НОМЕР ПОЛЯ), order - УБЫВАНИЕ ИЛИ НЕТ
+    //<--- ДЛИНА ЭТОГО МАССИВА - КОЛ-ВО ВЫБРАННЫХ УРОВНЕЙ СОРТИРОВКИ 
   }
   return sortArr;
 };
@@ -37,52 +38,31 @@ let sortTable = (idTable, data) => {         //<--- ГЛАВНАЯ ФУНКЦИ�
     if (sortArr.length === 0) return false;
 
     //находим нужную таблицу
-    let table = document.getElementById(idTable);
+    let table = document.getElementById(idTable); 
     // преобразуем строки таблицы в массив
-    let rowData = Array.from(table.rows);
+    let rowData = Array.from(table.rows); //<---МАССИВ СТРОК (tr) ИЗ ТАБЛИЦЫ
+
     // удаляем элемент с заголовками таблицы
     rowData.shift();
     
     //сортируем данные по возрастанию по всем уровням сортировки
     rowData.sort((first, second) => {
-      for(let i in sortArr) {
+      for(let i in sortArr) {    
         let key = sortArr[i].column;
+      //  alert('first: '+first.cells[0].innerHTML+' second: '+second.cells[0].innerHTML)
+
+        if (key == 1) continue
         
-        if (key < 5) {
-
-          if ((i == 0 && data[1].checked == false) || (i == 1 && data[3].checked == false) || (2 == 1 && data[5].checked == false)) {
-            if (first.cells[key].innerHTML > second.cells[key].innerHTML) {
-              return 1;
-            } else if (first.cells[key].innerHTML < second.cells[key].innerHTML){
-              return -1;
-            }
-          }
-          else {
-            if (first.cells[key].innerHTML < second.cells[key].innerHTML) {
-                return 1;
-            } else if (first.cells[key].innerHTML > second.cells[key].innerHTML){
-                return -1;
-            }      
-          }
-
-      } else {
-          if ((i == 0 && data[1].checked == false) || (i == 1 && data[3].checked == false) || (2 == 1 && data[5].checked == false)) {
-            if ((first.cells[key].innerHTML / 1) > (second.cells[key].innerHTML / 1)) {
-              return 1;
-            } else if ((first.cells[key].innerHTML / 1) < (second.cells[key].innerHTML / 1)){
-              return -1;
-            }
-          }
-          else {
-            if ((first.cells[key].innerHTML / 1) < (second.cells[key].innerHTML / 1)) {
-                return 1;
-            } else if ((first.cells[key].innerHTML / 1) > (second.cells[key].innerHTML / 1)){
-                return -1;
-            }      
-          }
-      }
-    }  
-
+        //<--- ПРОЦЕСС СОРТИРОВКИ
+        if (((key < 5) && (first.cells[key].innerHTML > second.cells[key].innerHTML)) || ((key >= 5) && ((first.cells[key].innerHTML / 1) > (second.cells[key].innerHTML / 1)))) {
+          if (sortArr[i].order == false) return 1
+          else return -1;
+        } 
+        else if (((key < 5) && (first.cells[key].innerHTML < second.cells[key].innerHTML)) || ((key >= 5) && ((first.cells[key].innerHTML / 1) < (second.cells[key].innerHTML / 1)))){
+          if (sortArr[i].order == false) return -1
+          else return 1;
+        }
+      }  
     return 0;
     });
 
