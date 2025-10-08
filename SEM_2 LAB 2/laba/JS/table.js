@@ -15,25 +15,25 @@ let createTable = (data, idTable) => {
     table.append(tr);
 
     let td
+    
     // самостоятельно сформировать строки таблицы на основе массива data
-    data.forEach((item) => {
+    for (let i=0;i<data.length+1;i++) {
+      if (data.length > 1) keys = Object.values(data[i])
+      else keys = Object.keys(data[i])
 
-        keys = Object.values(item)
-        tr = document.createElement('tr');
+      tr = document.createElement('tr');
 
-        for (let i=0; i<keys.length; i++) {
-            td = document.createElement('th')
-            if (i != 1) {
-              td.innerHTML = keys[i]
-            } else {
-              td.innerHTML = '<img src='+keys[i]+' alt='+keys[0]+'>'
-            }
-            tr.append(td)
-        }
+      for (let j=0; j<keys.length; j++) {
+        td = document.createElement('th')
+        if (j != 1) td.innerHTML = keys[j]
+        else td.innerHTML = '<img src='+keys[j]+' alt='+keys[0]+'>'
+        tr.append(td)
+      }
 
-        table.append(tr);
+      table.append(tr);
 
-    }); 
+    }; 
+
 }
 
 

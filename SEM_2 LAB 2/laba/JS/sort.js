@@ -53,7 +53,7 @@ let sortTable = (idTable, data) => {         //<--- ГЛАВНАЯ ФУНКЦИ�
 
         if (key == 1) continue
         
-        //<--- ПРОЦЕСС СОРТИРОВКИ
+        //<--- ПРОЦЕСС СОРТИРОВКИ; key<5 - строки, key>=5 - числа;
         if (((key < 5) && (first.cells[key].innerHTML > second.cells[key].innerHTML)) || ((key >= 5) && ((first.cells[key].innerHTML / 1) > (second.cells[key].innerHTML / 1)))) {
           if (sortArr[i].order == false) return 1
           else return -1;
@@ -62,8 +62,9 @@ let sortTable = (idTable, data) => {         //<--- ГЛАВНАЯ ФУНКЦИ�
           if (sortArr[i].order == false) return -1
           else return 1;
         }
+        
       }  
-    return 0;
+      return 0;
     });
 
     //выводим отсортированную таблицу на страницу
@@ -76,13 +77,11 @@ let sortTable = (idTable, data) => {         //<--- ГЛАВНАЯ ФУНКЦИ�
 
 
 
-let dropSort = (idTable, form) => { //<--- ЧИСТКА ЗНАЧЕНИЙ ФОРМЫ "ФИЛЬТРЫ"
+let dropSort = (idTable, form) => { //<--- ЧИСТКА ЗНАЧЕНИЙ ФОРМЫ "СОРТИРОВКА"
    for (let i=0;i<6;i++)
-    if (i==0 || i==2) {
-      form[i].value = 0
-    } else {
-      form[i].checked = false
-    }
+    if (i==0 || i==2) form[i].value = 0
+    else form[i].checked = false
+
     changeNextSelect('fieldsSecond', document.getElementById('fieldsFirst'))
 
     let val = document.getElementById('filter')
