@@ -160,4 +160,11 @@ let clearFilter = (idTable) => { //<--- ЧИСТКА ФИЛЬТРОВ
   const dictFilter = arr2.reduce((acc, item) => {
     return {...acc, [item.id]: item.value}
   }, {})
-  console.log(dictFilter) */
+  console.log(dictFilter) 
+  
+  const newCopy1 = copy1.map((item, i) => ({
+  ...item,
+  value: frHalf[i].value.toLowerCase()
+}));
+  
+  */
