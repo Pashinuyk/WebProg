@@ -6,7 +6,7 @@ let createTable = (data, idTable) => {
     // формируем заголовочную строку из ключей нулевого элемента массива
     let tr = document.createElement('tr');
 
-    for(key in data[0]) {
+    for(key in data[0]) {         //<--- СОЗДАНИЕ СТРОКИ С ЗАГОЛОВКАМИ
       let th = document.createElement('th');
       th.innerHTML = key;
       tr.append(th);
@@ -14,12 +14,13 @@ let createTable = (data, idTable) => {
 
     table.append(tr);
 
+
     let td
     
     // самостоятельно сформировать строки таблицы на основе массива data
-    for (let i=0;i<data.length+1;i++) {
+    for (let i=0;i<data.length;i++) {
       if (data.length > 1) keys = Object.values(data[i])
-      else keys = Object.keys(data[i])
+      else keys = null
 
       tr = document.createElement('tr');
 

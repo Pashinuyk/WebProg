@@ -44,15 +44,19 @@ let dataFilter = (dataForm) => {   //<--- ИЗВЛЕЧЕНИЕ ДАННЫХ ИЗ
     } 
     
     // формируем очередной элемент ассоциативного массива
-    dictFilter[item.id] = valInput;
+    dictFilter[item.id] = valInput; 
 
-  }
+  } 
+  
+
+
+
   return dictFilter;
 }
 
 
   
-let filterTable = (data, idTable, dataForm) =>{   //<--- ГЛАВНАЯ ФУНКЦИЯ СОРТИРОВКИ
+let filterTable = (data, idTable, dataForm) =>{   //<--- ГЛАВНАЯ ФУНКЦИЯ ФИЛЬТРАЦИИ
 
   let form = document.getElementById('sort')  //<--- ОБНУЛЕНИЕ СОРТИРОВКИ                     
   for (let i=0;i<4;i++)
@@ -108,7 +112,7 @@ let filterTable = (data, idTable, dataForm) =>{   //<--- ГЛАВНАЯ ФУНК
     console.log(tableFilter.length)
     createTable(tableFilter, idTable);
   } else {
-    createTable(consoles[0], idTable);
+    createTable(arr = [consoles[0]], idTable);
   }
 
  // console.log(reserv)
@@ -133,3 +137,27 @@ let clearFilter = (idTable) => { //<--- ЧИСТКА ФИЛЬТРОВ
   clearTable('list')
   createTable(consoles, 'list');  
 }
+
+
+
+/*   const arr = Array.from(dataForm.elements)
+  console.log(arr)
+
+  const frHalf = arr.slice(0,4)
+  const secHalf = arr.slice(4,12)
+
+  let copy1 = frHalf
+  console.log(copy1.values)
+  copy1[0].value = copy1[0].value.toLowerCase()
+  copy1[2].value = copy1[2].value.toLowerCase()
+  copy1[3].value = copy1[3].value.toLowerCase()
+  let copy2 = secHalf
+  copy2.values = secHalf.map((item) => Number(item.value))
+
+
+ const arr2 = [].concat(copy1, copy2)
+
+  const dictFilter = arr2.reduce((acc, item) => {
+    return {...acc, [item.id]: item.value}
+  }, {})
+  console.log(dictFilter) */

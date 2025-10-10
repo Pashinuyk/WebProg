@@ -41,6 +41,7 @@ let sortTable = (idTable, data) => {         //<--- ГЛАВНАЯ ФУНКЦИ�
     let table = document.getElementById(idTable); 
     // преобразуем строки таблицы в массив
     let rowData = Array.from(table.rows); //<---МАССИВ СТРОК (tr) ИЗ ТАБЛИЦЫ
+    console.log(rowData)
 
     // удаляем элемент с заголовками таблицы
     rowData.shift();
