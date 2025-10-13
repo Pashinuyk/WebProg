@@ -1,19 +1,18 @@
-// создаем изображение смайлик
-// рисуем его относительно точки (0, 0)
+//<--- РИСОВАНИЕ ЛОГОТИПА SNES
 function drawSmile(svg) {
-    let smile = svg.append("g")
+    let smile = svg.append("g")   //<--- ОСНОВАННАЯ ПЕРЕМЕННАЯ
     .style("stroke", "black")
     .style("stroke-width", 2)
   //  .style("fill", "brown");
     //фон
-    smile.append("ellipse")
+    smile.append("ellipse")     
     .attr("cx", -1)
     .attr("cy", 0)
     .attr("rx",75)
     .attr("ry",62.5)
     .style("fill", "gray");
     //голубая кнопка
-    smile.append("circle")
+    smile.append("circle")  
     .attr("cx", -6)
     .attr("cy", -30)
     .attr("r",20)

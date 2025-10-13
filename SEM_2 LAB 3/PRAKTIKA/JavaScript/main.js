@@ -4,24 +4,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const svg = d3.select("svg")
     .attr("width", width)
     .attr("height", height);
-    let pict //= drawSmile(svg);
+    let pict 
 
     //<--- ПРЯЧЕТ ЭЛЕМЕНТЫ, ПОЯВЛЯЮЩИЕСЯ ПРИ ВКЛЮЧЕНИИ АНИМАЦИИ
     let hide = document.getElementsByClassName('isVisible')
     for (let i in hide) hide[i].hidden = true
     document.getElementsByClassName('el')[1].children[0].children[0].hidden = true
-
-   // let strs = d3.selectAll("ol")
-   // strs.append("li").text(d3.select("li").text())
-
-   /* pict.attr("transform", `translate(${width / 2}, ${height / 2})`)
-    pict.attr("transform", `translate(${width / 2}, ${height / 2})
-    scale(1.5, 1.5) rotate(180)`); */
-
-   // alert(document.getElementsByTagName('svg')[0].outerHTML)
 }) 
 
-let draw = (dataForm) => {
+let draw = (dataForm) => {                 //<--- ДЕЙСТВИЕ ПО НАЖАТИЮ КНОПКИ "НАРИСОВАТЬ"
     const svg = d3.select("svg")
     let pict = drawSmile(svg)
     //<--- РАЗМЕЩЕНИЕ ПО УКАЗ. КООРДИНАТАМ
@@ -43,57 +34,7 @@ function isAnimOn(dataForm) {
     }
 }
 
-/* function isPathOn(dataForm) {
-    if (dataForm.checked == true) {
-        document.getElementsByClassName('el')[0].hidden = true
-        document.getElementsByClassName('el')[1].hidden = false
-    } else {
-        document.getElementsByClassName('el')[0].hidden = false
-        document.getElementsByClassName('el')[1].hidden = true       
-    }
-} */
 
-/*let runAnimation = (dataForm) => {
-    const svg = d3.select("svg")
-    let pict = drawSmile(svg);   
-    let animType = 'ease'+document.getElementsByTagName('select')[1].value
-
-    if (PathOn.checked == false) {
-      pict.attr("transform", `translate(${dataForm.cx.value},
-                                      ${dataForm.cy.value}) 
-                            scale(${dataForm.scale1.value}, ${dataForm.scale2.value})
-                            rotate(${dataForm.rotate.value})`)
-      .transition(svg)
-      .duration(6000)
-      .ease(d3[animType])
-      .attr("transform", `translate(${dataForm.cx_finish.value},
-        ${dataForm.cy_finish.value}) 
-scale(${dataForm.scale1_finish.value}, ${dataForm.scale2_finish.value})
-rotate(${dataForm.rotate_finish.value})`);
-    } else {
-        pict.attr("transform", `scale(${dataForm.scale1.value}, ${dataForm.scale2.value})
-                                rotate(${dataForm.rotate.value})`);         
-        let path = drawPath(document.getElementById('whatIsPath').selectedIndex);
-        pict.transition()
-        .ease(d3[animType])
-        .duration(document.getElementById('time').value*1000)
-        .attrTween('transform', translateAlong(path.node()), dataForm.scale1, dataForm.scale2,
-                   dataForm.scale1_finish.value, dataForm.scale2_finish.value)
-     //   .attrTween('transform', `rotate(${dataForm.rotate_finish.value})`)
-                               
-     //   pict.transition()
-     //   .duration(document.getElementById('time').value*1000) 
-     //   .attr("transform", `rotate(${dataForm.rotate_finish.value})`);                                     
-
-     //   scale(${dataForm.scale1.value}, ${dataForm.scale2.value})
-     //                       rotate(${dataForm.rotate.value})
-    }
-    
-}*/
-
-let Dscale1
-let Dscale2
-let Drot
 
 //<--- АНИМАЦИЯ
 let runAnimation = (dataForm) => {
@@ -107,9 +48,9 @@ let runAnimation = (dataForm) => {
                                       ${dataForm.cy.value}) 
                             scale(${dataForm.scale1.value}, ${dataForm.scale2.value})
                             rotate(${dataForm.rotate.value})`)
-      .transition(svg)
+      .transition(svg)   //<--- ОБЪЯВЛЕНИЕ АНИМАЦИИ
       .duration(document.getElementById('time').value*1000)
-      .ease(d3[animType])
+      .ease(d3[animType])  //<--- ТИП АНИМАЦИИ
       .attr("transform", `translate(${dataForm.cx_finish.value},
         ${dataForm.cy_finish.value}) 
 scale(${dataForm.scale1_finish.value}, ${dataForm.scale2_finish.value})
@@ -118,15 +59,13 @@ rotate(${dataForm.rotate_finish.value})`);
     } else {
         pict.attr("transform", `scale(${dataForm.scale1.value}, ${dataForm.scale2.value})
                                 rotate(${dataForm.rotate.value})`); 
-        let path = drawPath(createPathG);
-        Dscale1 = dataForm.scale1_finish.value - dataForm.scale1.value
-        Dscale2 = dataForm.scale2_finish.value - dataForm.scale2.value
-        Drot = (dataForm.rotate_finish.value - dataForm.rotate.value)/path.node().getTotalLength()
+        let path = drawPath();   //<--- СОЗДАНИЕ ПУТИ
+
+
         pict.transition()
         .ease(d3[animType])
         .duration(document.getElementById('time').value*1000)
-        .attrTween('transform', translateAlong(path.node(), dataForm) 
-    ); 
+        .attrTween( 'transform', translateAlong(path.node(), dataForm) ); 
     }
     
 }

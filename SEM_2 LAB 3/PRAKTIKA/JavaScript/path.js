@@ -5,73 +5,59 @@
 ...
 ]
 */
-// создаем массив точек, расположенных буквой "Г"
+//<--- РИСОВАНИЕ ПУТИ
 function createPathG() {
     const svg = d3.select("svg")
     const width = svg.attr("width")
     const height = svg.attr("height")
-    let data = [];
-    const padding = 480;
+    let data = []; //массив точек пути; промежуток между точками равен h
+    const padding = 480; 
     //начальное положение рисунка
     let posX = padding; //480
     let posY = height - padding; //120
-    const h = 5;
-    // координаты y - уменьшаются, x - постоянны
+    const h = 5; //промежуток между точками
+
     while (posY < padding) {
-    data.push( {x: posX, y: posY});
-    posY += h;
-    //x=480, y=480
+        data.push( {x: posX, y: posY});
+        posY += h;
+      //x=480, y=480
     }
 
     while ((posY > (height - padding)) && (posX > (padding+(width-padding))/2)) {
         data.push( {x: posX, y: posY});
         posX -= h;
         posY -= 2*h;
-        //x=300, y=120    
+      //x=300, y=120    
     }
             //120 < 480        //300 > (120)
     while ((posY < padding) && (posX > (width-padding))) {
         data.push( {x: posX, y: posY});
         posX -= h;
         posY += 2*h;   
-        //x=120, y=480     
+      //x=120, y=480     
     }
 
     while ((posY > height-padding)) {
         data.push( {x: posX, y: posY});
         posY -= h;   
-        //x=120, y=480     
+      //x=120, y=480     
     }    
     // координаты y - постоянны, x - увеличиваются
     while (posX < width - padding) {
-    data.push( {x: posX, y: posY});
-    posX += h;
+        data.push( {x: posX, y: posY});
+        posX += h;
     }
+
+    console.log(data)
     return data
 }
-    // создаем массив точек, расположенных по кругу
 
-/*function createPathCircle() {
-    const svg = d3.select("svg")
-    const width = svg.attr("width")
-    const height = svg.attr("height")
-    let data = [];
-    // используем параметрическую форму описания круга
-    // центр асположен в центре svg-элемента, а радиус равен трети высоты/ширины
-    for (let t = 0 ; t <= Math.PI * 2; t += 0.1) {
-    data.push(
-    {x: width / 2 + width / 3 * Math.sin(t),
-    y: height / 2 + height / 3 * Math.cos(t)}
-    );
-    }
-    return data
-    }*/
-    // создаем путь и отображаем его в svg-элементе
-let drawPath =(typePath) => {
+let drawPath =() => { //<--- ОСНОВНАЯ ФУНКЦИЯ ПУТИ
+
     // создаем массив точек пути в зависимости от параметра
    // const dataPoints = (typePath == 0)? createPathG() : createPathCircle();
     const dataPoints = createPathG()
-    const line = d3.line()
+    const line = d3.line()  //<--- ФУНКЦИЯ РИСОВАНИЯ ЛИНИИ
       .x((d) => d.x)
       .y((d) => d.y);
 
@@ -81,29 +67,65 @@ let drawPath =(typePath) => {
       .attr('d', line(dataPoints))
       .attr('stroke', 'black')
       .attr('fill', 'none');
+
     return paths;
 }    
 
-function translateAlong(path, dataForm) {
+function translateAlong(path, dataForm) {      //<--- ТРАНСФОРМАЦИЯ ВО ВРЕМЯ ПУТИ
     const length = path.getTotalLength();
-    Dscale1 = dataForm.scale1_finish.value - dataForm.scale1.value
-    Dscale2 = dataForm.scale2_finish.value - dataForm.scale2.value
-    Drot += Drot
-    return function() {
-    return function(t) {
-    const {x, y} = path.getPointAtLength(t * length);
 
-    const interpolateScaleX  = d3.interpolate(dataForm.scale1.value, dataForm.scale1_finish.value);
-    const interpolateScaleY  = d3.interpolate(dataForm.scale2.value, dataForm.scale2_finish.value);    
-    const interpolateRotate  = d3.interpolate(dataForm.rotate.value, dataForm.rotate_finish.value);
+    const OGsizeX = Number(dataForm.scale1.value)
+    const OGsizeY = Number(dataForm.scale2.value)
+    const OGsizeX2 = Number(dataForm.scale1_finish.value)
+    const OGsizeY2 = Number(dataForm.scale2_finish.value)
+    
+    const Rot1 = Number(dataForm.rotate.value)
+    const Rot2 = Number(dataForm.rotate_finish.value)
 
-    const scaleX  = interpolateScaleX(t);
-    const scaleY  = interpolateScaleY(t);
-    const rot = interpolateRotate(t)
+    return function() {       //<--- РЕКУРСИВНАЯ ФУНКЦИЯ, ВОЗВРАЩАЮЩАЯ ЗНАЧЕНИЕ, НА КОТОРОЕ НУЖНО ПЕРЕПРЫГИВАТЬ
+      return function(t) {
+       // console.log('t: '+t+' length: '+length)
+        const {x, y} = path.getPointAtLength(t * length);
 
-    return `translate(${x},${y}), 
-                                scale(${scaleX}, ${scaleY})
-                                rotate(${rot})`;
+        const scaleX = (OGsizeX2 - OGsizeX)*t
+        const scaleY = (OGsizeY2 - OGsizeY)*t
+
+        const rotDX = (Rot2 - Rot1)*t
+
+
+        return `translate(${x},${y}), 
+                                scale(${OGsizeX+scaleX}, ${OGsizeY+scaleY})
+                                         rotate(${Rot1+rotDX})`;
+        }
     }
-    }
-    }
+}
+
+/*scale(${scaleX}, ${scaleY})
+                                rotate(${rot})`; */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+
+
+                                       /* const interpolateScaleX  = d3.interpolate(dataForm.scale1.value, dataForm.scale1_finish.value);
+        const interpolateScaleY  = d3.interpolate(dataForm.scale2.value, dataForm.scale2_finish.value);    
+        const interpolateRotate  = d3.interpolate(dataForm.rotate.value, dataForm.rotate_finish.value);
+
+        const scaleX  = interpolateScaleX(t);
+        const scaleY  = interpolateScaleY(t); */
+       // console.log(scaleX+'   '+scaleY)
+      //  const rot = interpolateRotate(t)
