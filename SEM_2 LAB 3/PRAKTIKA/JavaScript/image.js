@@ -1,6 +1,6 @@
 //<--- РИСОВАНИЕ ЛОГОТИПА SNES
 function drawSmile(svg) {
-    let smile = svg.append("g")   //<--- ОСНОВАННАЯ ПЕРЕМЕННАЯ
+    let smile = svg.append("g")   //<--- ГРУППА
     .style("stroke", "black")
     .style("stroke-width", 2)
   //  .style("fill", "brown");

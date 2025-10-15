@@ -56,8 +56,8 @@ let drawPath =() => { //<--- ОСНОВНАЯ ФУНКЦИЯ ПУТИ
 
     // создаем массив точек пути в зависимости от параметра
    // const dataPoints = (typePath == 0)? createPathG() : createPathCircle();
-    const dataPoints = createPathG()
-    const line = d3.line()  //<--- ФУНКЦИЯ РИСОВАНИЯ ЛИНИИ
+    const dataPoints = createPathG()  //<--- СОЗДАНИЕ МАССИВА ПУТИ
+    const line = d3.line()  //<--- ОБЪЯВЛЕНИЕ ФУНКЦИИ СОЗДАНИЯ ЛИНИИ
       .x((d) => d.x)
       .y((d) => d.y);
 
@@ -66,7 +66,7 @@ let drawPath =() => { //<--- ОСНОВНАЯ ФУНКЦИЯ ПУТИ
     const paths = svg.append('path')
       .attr('d', line(dataPoints))
       .attr('stroke', 'black')
-      .attr('fill', 'none');
+      .attr('fill', 'none'); 
 
     return paths;
 }    
@@ -99,6 +99,26 @@ function translateAlong(path, dataForm) {      //<--- ТРАНСФОРМАЦИЯ
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*scale(${scaleX}, ${scaleY})
                                 rotate(${rot})`; */
