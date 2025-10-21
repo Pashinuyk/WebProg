@@ -17,7 +17,62 @@ function createPathG() {
     let posY = height - padding; //120
     const h = 5; //промежуток между точками
 
-    while (posY < padding) {
+
+   
+   /* for (let t = -0.45 * Math.PI ; t < 0.5*Math.PI; t += 0.1) { ТАНГЕНС
+
+      data.push(
+      {x: width/4+ (t + 0.5* Math.PI) * 100,
+      y: height / 2 + (height / 8) * Math.tan(t)}
+      );
+    }     */
+
+
+  /*  let j=300
+    for (let t = 0 ; t <= Math.PI * 6; t += 0.1) {  СИНУСОИДА
+      if (t == 0.1) j = 0
+      data.push(
+      {x: t* 50,
+      y: ((height / 2) + (height / 4) * Math.sin(2*t))}
+      );
+    }     */  
+
+  /*  for (let t = -0.5*Math.PI ; t <= Math.PI * 0.5; t += 0.1) { ВЫТЯНУТЫЙ ПОЛУКРУГ
+      data.push(
+      {x: width / 2 - (width / 6) * Math.sin(t),
+      y: height / 2 - (height / 3) * Math.cos(t)}
+      );
+    }   
+    data.reverse()    */
+    
+   /* let i= -10               СПИРАЛЬ
+    let j=70
+    for (let t = -1 ; t <= Math.PI * 4; t += 0.1) {
+      i++
+      if (t == 0) j = 7
+      data.push(
+      {x: width / 2 + (width / j + i) * Math.sin(t),
+      y: height / 2 + (height / (j+3) + 1.1*i) * Math.cos(t)}
+      );
+    }   */
+   // data.reverse() 
+
+    /*posX = 200
+    posY = 100
+
+    while (posY < 300) {
+      data.push({x: posX, y: posY})
+      posX += 1.5*h
+      posY += h
+    }
+
+    while (posY < 500) {
+      data.push({x: posX, y: posY})
+      posX -= 1.5*h
+      posY += h
+    }   */     
+
+   /* while (posY < padding) {
         data.push( {x: posX, y: posY});
         posY += h;
       //x=480, y=480
@@ -46,7 +101,7 @@ function createPathG() {
     while (posX < width - padding) {
         data.push( {x: posX, y: posY});
         posX += h;
-    }
+    } */
 
     console.log(data)
     return data
