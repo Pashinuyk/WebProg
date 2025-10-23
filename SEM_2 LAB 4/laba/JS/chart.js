@@ -3,55 +3,56 @@ resType = 0; //<--- 0 - сумм. продажи, 1 - макс. оператив
 
 
 function createArrGraph(data, key) {
-    groupObj = d3.group(data, d => d[key]); //<--- формирует map по полю "Страна"
+    groupObj = d3.group(data, d => d[key]); //<--- формирует map по выбранному полю OX
     console.log(groupObj);
     let arrGraph =[];
 
 
-
     for(let entry of groupObj) { //<--- формирует массив
+     // alert(entry[0]+':   '+entry[1].map(d=>d['Продано (млн.)']))
       let val
-      if (resType == 0) val = d3.sum(entry[1].map(d => d['Продано (млн.)'])); //<--- получает минмакс каждой страны
+      if (resType == 0) val = d3.sum(entry[1].map(d => d['Продано (млн.)'])); //<--- ПОЛУЧАЕТ НУЖНЫЕ ЗНАЧЕНИЯ ПО ШКАЛЕ OY
       else val = d3.max(entry[1].map(d => d['Оперативная памяти (МБ)']))
 
       arrGraph.push({labelX : entry[0], values : val});
-    //  console.log('New Array El.: '+entry[0], minMax)
+    //  console.log('New Array El.: '+entry[0], val)
     }
-    arrGraph.sort((a, b) => String(a.labelX).localeCompare(String(b.labelX)));
-   // for (let i=0; i<arrGraph.length; i++) console.log(arrGraph[i])
+    arrGraph.sort((a, b) => String(a.labelX).localeCompare(String(b.labelX))); //<--- СОРТИРОВКА ШКАЛЫ OX ЧТОБЫ БЫЛО КРАСИВО
+
     return arrGraph;
 }
 
-function drawGraph(data) { //<--- data - массив buildings
+
+
+function drawGraph(data) { //<--- САМОЕ НАЧАЛО ПОСТРОЕНИЯ ГРАФИКА
     // значения по оси ОХ
     console.log('VAL: '+resType)
 
-    document.querySelector('svg').style.height = '600px'
+    document.querySelector('svg').style.height = '600px'  //<--- ДЕЛАЕТ SVG ВЫШЕ
     let keyX;
-    for (let i=0; i<3; i++) {
+    for (let i=0; i<3; i++) {   //<--- ЗНАЧЕНИЕ ПО ОСИ OX
       if (document.getElementsByName('ox')[i].checked == true) keyX = document.getElementsByName('ox')[i].value;
     } 
-   //let keyX = "Поколение" 
 
     // создаем массив для построения графика
     const arrGraph = createArrGraph(data, keyX);
 
+
     let svg = d3.select("svg")
-    svg.selectAll('*').remove();
+    svg.selectAll('*').remove();   //<--- УДАЛЯЕТ ВСЁ СОДЕРЖИМОЕ SVG
 
     // создаем ассоц. массив с атрибутами области вывода графика
   attr_area = {
-      width: parseFloat(svg.style('width')),
-      height: parseFloat(svg.style('height')),
+      width: parseFloat(svg.style('width')),   //800
+      height: parseFloat(svg.style('height')),  //600
       marginX: 50,
       marginY: 50
   }
 
     // создаем шкалы преобразования и выводим оси
-    const [scX, scY] = createAxis(svg, arrGraph, attr_area);
+    const [scX, scY] = createAxis(svg, arrGraph, attr_area); //<--- РИСУЕТСЯ ГРАФИК
 
-    // рисуем график
-    //createChart(svg, arrGraph, scX, scY, attr_area, "blue", 0)
+   // createScatter(svg, arrGraph2, scX, scY, attr_area, "blue")
     if (document.getElementById('chart-type').value == 'scatter') createScatter(svg, arrGraph, scX, scY, attr_area, "red")
     else if (document.getElementById('chart-type').value == 'bar') createBar(svg, arrGraph, scX, scY, attr_area, "red")
 
@@ -65,11 +66,11 @@ function createAxis(svg, data, attr_area){
 
     // функция интерполяции значений на оси
     // по оси ОХ текстовые значения
-    let scaleX = d3.scaleBand()
+    let scaleX = d3.scaleBand()    //СЛОВА СОПОСТАВЛЯЮТСЯ С ЦИФРАМИ
       .domain(data.map(d => d.labelX)) //что будет отображаться на графике
       .range([0, attr_area.width - 2 * attr_area.marginX]); //диапазон расположений
 
-    let scaleY = d3.scaleLinear()
+    let scaleY = d3.scaleLinear()   //ЦИФРЫ СОПОСТАВЛЯЮТСЯ С ЦИФРАМИ
       .domain([min * 0.85, max*1.1])
       .range([attr_area.height - 2 * attr_area.marginY, 0]);
 
@@ -82,6 +83,7 @@ function createAxis(svg, data, attr_area){
       .attr("transform", `translate(${attr_area.marginX},
                                     ${attr_area.height - attr_area.marginY})`)
       .call(axisX)
+      //<-- ВСЁ ДАЛЬНЕЙШЕЕ - СТИЛИЗАЦИЯ ТЕКСТА
       .selectAll("text") // подписи на оси - наклонные
       .style("text-anchor", "end")
       .attr("dx", "-.8em")
@@ -96,7 +98,7 @@ function createAxis(svg, data, attr_area){
     return [scaleX, scaleY]
 }
 
-function createScatter(svg, data, scaleX, scaleY, attr_area, color) {
+function createScatter(svg, data, scaleX, scaleY, attr_area, color) { //<--- ТОЧКИ
     const r = 4;
 
     svg.selectAll(".dot")
@@ -129,17 +131,20 @@ function createScatter(svg, data, scaleX, scaleY, attr_area, color) {
 
 }*/
 
-function createBar(svg, data, scaleX, scaleY, attr_area, color) {
+function createBar(svg, data, scaleX, scaleY, attr_area, color) {  //<--- ПОЛОСКИ
  // alert(data.length)
  // alert(attr_area.width - 2 * attr_area.marginX)
+
   svg.selectAll(".bar")
     .data(data)
     .enter()
     .append("rect")
     .attr("class", "bar")
-    .attr("x", d => scaleX(d.labelX) + attr_area.marginX + scaleX.bandwidth() * 0.3) // центрируем
-    .attr("y", d => scaleY(d.values) + attr_area.marginY)
+    .attr("x", d => scaleX(d.labelX) + scaleX.bandwidth() * 0.3) // центрируем
+    .attr("y", d => scaleY(d.values))
     .attr("width", scaleX.bandwidth() * 0.4) 
     .attr("height", d => attr_area.height - attr_area.marginY * 2 - scaleY(d.values))
+    .attr("transform", `translate(${attr_area.marginX},
+      ${attr_area.marginY})`)    
     .attr("fill", color);
 }

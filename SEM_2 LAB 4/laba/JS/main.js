@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     createTable(consoles, 'list');
 
     reserv = document.getElementById('filter')
+
  //   drawGraph(consoles)
    // filterTable(consoles, 'list', document.getElementById('filter'));
 })

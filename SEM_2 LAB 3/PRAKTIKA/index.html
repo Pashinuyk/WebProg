@@ -74,10 +74,24 @@
 
       <input type="button" value="Очистить"
                          onClick="document.getElementsByTagName('svg')[0].innerHTML = ''">
-    </p>   
+    </p>  
     <p>
-    <input type="checkbox" id="AnimOn"
-                           onchange="isAnimOn(this)"> Включить анимацию?                             
+    <input type="checkbox" id="AnimOn">Включить анимацию?
+                         <!--  onchange="isAnimOn(this)"> Включить анимацию? --> 
+      
+    <script>
+d3.select('input#AnimOn').on('change', function() {
+    let hide = document.getElementsByClassName('isVisible')
+    if (this.checked == true) {
+        document.getElementById('Draw').hidden = true
+        for (let i in hide) hide[i].hidden = false  
+    } else {
+        document.getElementById('Draw').hidden = false
+        for (let i in hide) hide[i].hidden = true      
+    }
+})      
+    </script>                     
+                         
 
       <select class="isVisible">
         <option value="Linear" selected> Linear </option>

@@ -18,12 +18,43 @@ function createPathG() {
     const h = 5; //промежуток между точками
 
 
-   /* for (let t = 0 ; t <= Math.PI * 5; t += 0.1) {  //НОРМ СПИРАЛЬ
+
+    for (let t = 0; t <= Math.PI * 2+0.1; t += 0.1) {
+      data.push(
+        {x: 300 + 100*Math.sin(t),
+         y: 300 + 100*Math.cos(t)}
+      );
+    }
+
+
+   /* posX = 0                //ТАНГЕНСОИДА
+    posY = 300
+    while (posX <=600) {
+      data.push(
+        {x: posX,
+         y: posY + 100 * Math.tan((posX - 300) / 200)
+        }
+      )
+      posX += 1
+    } */
+
+   /* posX = 0                //СИНУСОИДА
+    posY = 300
+    while (posX <=600) {
+      data.push(
+        {x: posX,
+         y: 300 + 200*Math.sin(posX/10)
+        }
+      )
+      posX += 1
+    }*/
+
+    /*for (let t = 0 ; t <= Math.PI * 5; t += 0.1) {  //НОРМ СПИРАЛЬ
       data.push(
       {x: 300 + 10*t*Math.sin(t),
       y: 300 + 10*t*Math.cos(t)}
       );
-    }      */
+    }  */ 
 
     /*for (let t = 0 ; t <= 2*Math.PI; t += 0.01) { //ДЕЛЬТОИДА
         data.push(
