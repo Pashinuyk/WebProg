@@ -18,18 +18,31 @@ function createPathG() {
     const h = 5; //промежуток между точками
 
 
-   
-   /* for (let t = -0.45 * Math.PI ; t < 0.5*Math.PI; t += 0.1) { ТАНГЕНС
-
+   /* for (let t = 0 ; t <= Math.PI * 5; t += 0.1) {  //НОРМ СПИРАЛЬ
       data.push(
-      {x: width/4+ (t + 0.5* Math.PI) * 100,
-      y: height / 2 + (height / 8) * Math.tan(t)}
+      {x: 300 + 10*t*Math.sin(t),
+      y: 300 + 10*t*Math.cos(t)}
       );
-    }     */
+    }      */
 
+    /*for (let t = 0 ; t <= 2*Math.PI; t += 0.01) { //ДЕЛЬТОИДА
+        data.push(
+        {x: 250 + 100 * (2*Math.cos(t) + Math.cos(2*t)),
+        y: 300 + 100 * (2*Math.sin(t) - Math.sin(2*t))}
+        );
+    }
+    data.reverse()*/
+
+   
+    /*for (let t = -0.422 * Math.PI ; t <= 0.425*Math.PI; t += 0.01) { //ТАНГЕНС ИЛИ КОТАНГЕНС
+        data.push(
+        {x: width/4+ (t + 0.5* Math.PI) * 100,
+        y: height / 2 + (height / 8) * (Math.tan(t))}
+        );
+    } */
 
   /*  let j=300
-    for (let t = 0 ; t <= Math.PI * 6; t += 0.1) {  СИНУСОИДА
+    for (let t = 0 ; t <= Math.PI * 6; t += 0.1) {  //СИНУСОИДА
       if (t == 0.1) j = 0
       data.push(
       {x: t* 50,
@@ -37,7 +50,7 @@ function createPathG() {
       );
     }     */  
 
-  /*  for (let t = -0.5*Math.PI ; t <= Math.PI * 0.5; t += 0.1) { ВЫТЯНУТЫЙ ПОЛУКРУГ
+  /*  for (let t = -0.5*Math.PI ; t <= Math.PI * 0.5; t += 0.1) { //ВЫТЯНУТЫЙ ПОЛУКРУГ
       data.push(
       {x: width / 2 - (width / 6) * Math.sin(t),
       y: height / 2 - (height / 3) * Math.cos(t)}
@@ -45,7 +58,7 @@ function createPathG() {
     }   
     data.reverse()    */
     
-   /* let i= -10               СПИРАЛЬ
+   /* let i= -10               //СПИРАЛЬ
     let j=70
     for (let t = -1 ; t <= Math.PI * 4; t += 0.1) {
       i++
