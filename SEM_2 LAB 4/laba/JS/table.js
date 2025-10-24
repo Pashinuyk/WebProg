@@ -34,9 +34,10 @@ rows.selectAll('td')
       .text(d => d)
 
 rows.selectAll('td:nth-child(2)')
-    .html(d => '<img src='+d+' alt='+d+'>')    
+    .html(d => '<img src='+d+' alt='+d+'>')  */  
+   
               
-//alert(document.getElementsByTagName('table')[0].innerHTML) */ 
+//alert(document.getElementsByTagName('table')[0].innerHTML) 
 
 
              

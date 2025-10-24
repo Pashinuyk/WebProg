@@ -4,6 +4,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
     reserv = document.getElementById('filter')
 
+  /*  group = d3.group(consoles, d => d['Тип'])
+    console.log(group)
+    groupK = Array.from(group.keys())
+
+    d3.select('select#type')
+      .selectAll('option')
+      .data(groupK)
+      .enter()
+      .append('option')
+      .text(d => d)
+
+    d3.select('select#type')
+      .insert('option', 'option')
+      .text('Нет')  
+      .attr('selected', 'selected') */
+    
+
  //   drawGraph(consoles)
    // filterTable(consoles, 'list', document.getElementById('filter'));
 })

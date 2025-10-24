@@ -9,7 +9,7 @@ function createArrGraph(data, key) {
 
 
     for(let entry of groupObj) { //<--- формирует массив
-     // alert(entry[0]+':   '+entry[1].map(d=>d['Продано (млн.)']))
+      //alert(entry[0]+':   '+entry[1].map(d=>d['Продано (млн.)']))
       let val
       if (resType == 0) val = d3.sum(entry[1].map(d => d['Продано (млн.)'])); //<--- ПОЛУЧАЕТ НУЖНЫЕ ЗНАЧЕНИЯ ПО ШКАЛЕ OY
       else val = d3.max(entry[1].map(d => d['Оперативная памяти (МБ)']))
@@ -52,9 +52,10 @@ function drawGraph(data) { //<--- САМОЕ НАЧАЛО ПОСТРОЕНИЯ �
     // создаем шкалы преобразования и выводим оси
     const [scX, scY] = createAxis(svg, arrGraph, attr_area); //<--- РИСУЕТСЯ ГРАФИК
 
+
    // createScatter(svg, arrGraph2, scX, scY, attr_area, "blue")
-    if (document.getElementById('chart-type').value == 'scatter') createScatter(svg, arrGraph, scX, scY, attr_area, "red")
-    else if (document.getElementById('chart-type').value == 'bar') createBar(svg, arrGraph, scX, scY, attr_area, "red")
+   if (document.getElementById('chart-type').value == 'scatter') createScatter(svg, arrGraph, scX, scY, attr_area, "red")
+   else if (document.getElementById('chart-type').value == 'bar') createBar(svg, arrGraph, scX, scY, attr_area, "red")
 
 }
 
@@ -148,3 +149,18 @@ function createBar(svg, data, scaleX, scaleY, attr_area, color) {  //<--- ПОЛ
       ${attr_area.marginY})`)    
     .attr("fill", color);
 }
+
+/*function createGraph(svg, data, scaleX, scaleY, attr_area) {
+  let line = d3.line()
+      .x(d => scaleX(d.labelX))
+      .y(d => scaleY(d.values))
+
+svg.append('path')
+  .datum(data)
+  .attr('d', line)
+  .attr("transform", `translate(${attr_area.marginX}, ${attr_area.marginY})`)
+  
+  .style('stroke-width', '2')
+  .style('stroke', 'red')
+  .style("fill", "none");
+} */
