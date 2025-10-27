@@ -4,7 +4,7 @@
       <title><h1 align="center">
         Список консолей
       </h1></title>
-      <script src="http://d3js.org/d3.v7.min.js"> </script>
+      <script src="JS/d3.min.js"></script>
       <script src="JS/data.js"></script>
       <script src="JS/main.js"></script>
       <script src="JS/table.js"></script>
@@ -32,9 +32,10 @@
       
       <p>
       <b>Результат:</b><br>
-        <label><input type="radio" name="res" value="sells"
-          onClick="resType=0" checked>Суммарные продажи</label><br>
-        <label><input type="radio" name="res" value="mem"
+
+        <label><input type="checkbox" name="res" value="sells" id="minn1"
+          onClick="resType=0" checked>Мин. опер. память</label><br>
+        <label><input type="checkbox" name="res" value="mem" id="minn2"
           onClick=resType=1>Максимальная опер. память</label>
       </p>
 

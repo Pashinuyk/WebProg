@@ -2,7 +2,7 @@ resType = 0; //<--- 0 - сумм. продажи, 1 - макс. оператив
 
 
 
-function createArrGraph(data, key) {
+function createArrGraph(data, key, resType) {
     groupObj = d3.group(data, d => d[key]); //<--- формирует map по выбранному полю OX
     console.log(groupObj);
     let arrGraph =[];
@@ -11,8 +11,8 @@ function createArrGraph(data, key) {
     for(let entry of groupObj) { //<--- формирует массив
       //alert(entry[0]+':   '+entry[1].map(d=>d['Продано (млн.)']))
       let val
-      if (resType == 0) val = d3.sum(entry[1].map(d => d['Продано (млн.)'])); //<--- ПОЛУЧАЕТ НУЖНЫЕ ЗНАЧЕНИЯ ПО ШКАЛЕ OY
-      else val = d3.max(entry[1].map(d => d['Оперативная памяти (МБ)']))
+      if (resType == 0) val = d3.sum(entry[1].map(d => d['Оперативная памяти (МБ)'])); //<--- ПОЛУЧАЕТ НУЖНЫЕ ЗНАЧЕНИЯ ПО ШКАЛЕ OY
+      else val = d3.min(entry[1].map(d => d['Оперативная памяти (МБ)']))
 
       arrGraph.push({labelX : entry[0], values : val});
     //  console.log('New Array El.: '+entry[0], val)
@@ -34,8 +34,11 @@ function drawGraph(data) { //<--- САМОЕ НАЧАЛО ПОСТРОЕНИЯ �
       if (document.getElementsByName('ox')[i].checked == true) keyX = document.getElementsByName('ox')[i].value;
     } 
 
+    let arrGraph
+    let arrGraph2
     // создаем массив для построения графика
-    const arrGraph = createArrGraph(data, keyX);
+    if (document.getElementById('minn1').checked) arrGraph = createArrGraph(data, keyX, 0);
+    if (document.getElementById('minn2').checked) arrGraph2 = createArrGraph(data, keyX, 1)
 
 
     let svg = d3.select("svg")
@@ -54,8 +57,11 @@ function drawGraph(data) { //<--- САМОЕ НАЧАЛО ПОСТРОЕНИЯ �
 
 
    // createScatter(svg, arrGraph2, scX, scY, attr_area, "blue")
-   if (document.getElementById('chart-type').value == 'scatter') createScatter(svg, arrGraph, scX, scY, attr_area, "red")
-   else if (document.getElementById('chart-type').value == 'bar') createBar(svg, arrGraph, scX, scY, attr_area, "red")
+   if (document.getElementById('minn2').checked) createScatter(svg, arrGraph2, scX, scY, attr_area, "blue")
+   if (document.getElementById('minn1').checked) {
+     if (document.getElementById('chart-type').value == 'scatter') createScatter(svg, arrGraph, scX, scY, attr_area, "red")
+     else if (document.getElementById('chart-type').value == 'bar') createBar(svg, arrGraph, scX, scY, attr_area, "red")
+   }
 
 }
 
