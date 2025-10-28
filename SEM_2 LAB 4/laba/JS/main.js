@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     reserv = document.getElementById('filter')
 
+    drawGraph(consoles)
+
   /*  group = d3.group(consoles, d => d['Тип'])
     console.log(group)
     groupK = Array.from(group.keys())

@@ -45,10 +45,21 @@ let sortTable = (idTable, data) => {         //<--- ГЛАВНАЯ ФУНКЦИ�
     let rowData = Array.from(table.rows); //<---МАССИВ СТРОК (tr) ИЗ ТАБЛИЦЫ
     console.log(rowData)
 
+    let compareByTitle = (a,b) => {
+      if (a['Тип'] < b['Тип']) return false
+      else if ((a['Тип'] == b['Тип']) && (a['Разработчик'] < b['Разработчик'])) return false
+      else if ((a['Тип'] == b['Тип']) && (a['Разработчик'] == b['Разработчик']) && (a['Такт. частота процессора (МГц)'] < b['Такт. частота процессора (МГц)'])) return false
 
+      return true
+    }
+ 
+    d3.select('tbody')
+      .selectAll('tr')
+      .sort(compareByTitle)
+    
 
     // удаляем элемент с заголовками таблицы
-    rowData.shift();
+   /* rowData.shift();
     
     //сортируем данные по возрастанию по всем уровням сортировки
     rowData.sort((first, second) => {
@@ -76,7 +87,7 @@ let sortTable = (idTable, data) => {         //<--- ГЛАВНАЯ ФУНКЦИ�
     table.innerHTML = table.rows[0].innerHTML;
     rowData.forEach(item => {
       table.append(item);
-    });
+    }); */
 
  /*   let compareG = (a,b) => {
       return (a['Поколение'] <= b['Поколение']) ? -1 : 1

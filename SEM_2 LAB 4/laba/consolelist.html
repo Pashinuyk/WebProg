@@ -8,17 +8,17 @@
       <script src="JS/data.js"></script>
       <script src="JS/main.js"></script>
       <script src="JS/table.js"></script>
-      <script src="JS/filter.js"></script>
+      
       <script src="JS/sort.js"></script>   
       <script src="JS/chart.js"></script> 
-      <link rel="stylesheet" href="CSS/style.css">   
+      <link rel="stylesheet" href="CSS/style.css">  
     </head>
   
   <body>
     <hr>
     <a href="first.html">Самые продаваемые игровые консоли</a><br><a href="#consoles">Список игровых консолей</a><hr>
     
-    <details>
+    <details open>
       <summary>График</summary>
       <p>
       <b>Значение по оси OX:</b><br>
@@ -47,7 +47,8 @@
         </select>
       </p>      
       <input type="submit" value="Подтвердить"
-             onClick="drawGraph(filterTable(consoles, 'list', reserv))">
+                 onClick="drawGraph(consoles)">
+           <!--  onClick="drawGraph(filterTable(consoles, 'list', reserv))"> -->
       <svg></svg>
     </details>
     
@@ -86,8 +87,8 @@
      
         <input type="button" value="Применить"
            onClick="filterStart(consoles, 'list', this.form)">
-           <input type="button" value="Очистить фильтры"
-           onClick="clearFilter(this.form)">           
+           <input type="button" value="Очистить фильтры" id="cancel">
+           <!--onClick="clearFilter(this.form)">  -->
      </form>
       
     </details>
@@ -124,5 +125,8 @@
     <table id='list' border="1" cellpadding ="10" cellspacing="0" align="center">
       
     </table>
+
+    <script src="JS/filter.js"></script>
+
   </body>
 </html>

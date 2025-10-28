@@ -95,6 +95,7 @@ let filterTable = (data, idTable, dataForm) =>{   //<--- ГЛАВНАЯ ФУНК
   //alert(document.getElementById('list').innerHTML)
 
   /*filterFunc = (el) => {
+
     let val = el['Название'].toLowerCase()
     if (val.indexOf(datafilter['name']) == -1) return true
     else return false
@@ -115,7 +116,36 @@ let filterTable = (data, idTable, dataForm) =>{   //<--- ГЛАВНАЯ ФУНК
   //.filter(d => !((d['Оперативная памяти (МБ)'] >= datafilter['ram1']) && (d['Оперативная памяти (МБ)'] <= datafilter['ram2'])))
   .style('display', 'none')  */
 
-  let tableFilter = data.filter(item => {  //<--- ИЗ ТАБЛИЦЫ ПОСТЕПЕННО БЕРЁТСЯ КАЖДАЯ СТРОКА И СРАВНИВАЕТСЯ С datafilter
+  filterFunc = (el) => {
+
+
+    if (el['Название'].toLowerCase().indexOf(datafilter['name']) == -1) return false
+
+    if (datafilter['type'] != 'Нет') {
+      if (el['Тип'] != datafilter['type']) return false
+    }
+
+    if (el['Разработчик'].toLowerCase().indexOf(datafilter['dev']) == -1) return false
+    if (el['Процессор'].toLowerCase().indexOf(datafilter['cpu']) == -1) return false
+
+    if (!((el['Такт. частота процессора (МГц)'] >= datafilter['temp1']) && (el['Такт. частота процессора (МГц)'] <= datafilter['temp2']))) return false
+    if (!((el['Оперативная памяти (МБ)'] >= datafilter['ram1']) && (el['Оперативная памяти (МБ)'] <= datafilter['ram2']))) return false
+    if (!((el['Поколение'] >= datafilter['gen1']) && (el['Поколение'] <= datafilter['gen2']))) return false
+    if (!((el['Год выпуска'] >= datafilter['year1']) && (el['Год выпуска'] <= datafilter['year2']))) return false
+
+    return true
+  }
+
+  d3.select('tbody')
+    .selectAll('tr')
+    .style('display', 'none')
+
+  d3.select('tbody')
+    .selectAll('tr')
+    .data(consoles)
+    .filter(d => filterFunc(d)).style('display', '')    
+
+ /* let tableFilter = data.filter(item => {  //<--- ИЗ ТАБЛИЦЫ ПОСТЕПЕННО БЕРЁТСЯ КАЖДАЯ СТРОКА И СРАВНИВАЕТСЯ С datafilter
     let result = true;
     // строка соответствует фильтру, если сравнение всех значения из input
     // со значением ячейки очередной строки - истина
@@ -145,13 +175,17 @@ let filterTable = (data, idTable, dataForm) =>{   //<--- ГЛАВНАЯ ФУНК
     }
 
     return result;
-  });
+  }); */
 
-  return tableFilter
+  return tableFilter 
 
 }  
 
-let clearFilter = (idTable) => { //<--- ЧИСТКА ФИЛЬТРОВ
+//let clearFilter = (idTable) => { //<--- ЧИСТКА ФИЛЬТРОВ
+
+d3.select('#cancel').on('click', function() {
+
+  idTable = document.getElementById('filter')
 
   let form = document.getElementById('sort') //<--- ЧИСТКА ЗНАЧЕНИЙ ФОРМЫ "СОРТИРОВКА"
   for (let i=0;i<4;i++)
@@ -169,4 +203,4 @@ let clearFilter = (idTable) => { //<--- ЧИСТКА ФИЛЬТРОВ
 
   clearTable('list')
   createTable(consoles, 'list');  
-}
+})

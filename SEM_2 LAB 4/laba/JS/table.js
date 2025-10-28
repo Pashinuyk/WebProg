@@ -104,6 +104,11 @@ d3.select('tbody').selectAll('tr')
    .append('td')
    .text(d => d)
 
+d3.select('tbody')
+  .selectAll('tr')
+  .data(consoles)
+  .selectAll('td:nth-child(2)')
+  .html(d => '<img src='+d+'>')   
 
 }
 

@@ -85,8 +85,8 @@ function createAxis(svg, data, attr_area){
     // функция интерполяции значений на оси
     // по оси ОХ текстовые значения
     let scaleX = d3.scaleBand()    //СЛОВА СОПОСТАВЛЯЮТСЯ С ЦИФРАМИ
-      .domain(data.map(d => d.labelX)) //что будет отображаться на графике
-      .range([0, attr_area.width - 2 * attr_area.marginX]); //диапазон расположений
+      .domain(data.map(d => d.labelX)) //что будет отображаться на графике (ОБЛАСТЬ ОПРЕДЕЛЕНИЯ)
+      .range([0, attr_area.width - 2 * attr_area.marginX]); //диапазон расположений (ОБЛАСТЬ ЗНАЧЕНИЙ)
 
     let scaleY = d3.scaleLinear()   //ЦИФРЫ СОПОСТАВЛЯЮТСЯ С ЦИФРАМИ
       .domain([min * 0.85, max*1.1])
