@@ -2,24 +2,28 @@ resType = 0; //<--- 0 - сумм. продажи, 1 - макс. оператив
 
 
 
-function createArrGraph(data, key, resType) {
+function createArrGraph(data, key) {
     groupObj = d3.group(data, d => d[key]); //<--- формирует map по выбранному полю OX
     console.log(groupObj);
-    let arrGraph =[];
+    let arrGraphMax =[];
+    let arrGraphMin = []
+    let valMax
+    let valMin
 
 
     for(let entry of groupObj) { //<--- формирует массив
       //alert(entry[0]+':   '+entry[1].map(d=>d['Продано (млн.)']))
-      let val
-      if (resType == 1) val = d3.max(entry[1].map(d => d['Продано (млн.)'])); //<--- ПОЛУЧАЕТ НУЖНЫЕ ЗНАЧЕНИЯ ПО ШКАЛЕ OY
-      else val = d3.min(entry[1].map(d => d['Продано (млн.)']))
+      valMax = d3.max(entry[1].map(d => d['Продано (млн.)'])); //<--- ПОЛУЧАЕТ НУЖНЫЕ ЗНАЧЕНИЯ ПО ШКАЛЕ OY
+      valMin = d3.min(entry[1].map(d => d['Продано (млн.)']))
 
-      arrGraph.push({labelX : entry[0], values : val});
+      arrGraphMax.push({labelX : entry[0], values : valMax});
+      arrGraphMin.push({labelX : entry[0], values : valMin});
     //  console.log('New Array El.: '+entry[0], val)
     }
-    arrGraph.sort((a, b) => String(a.labelX).localeCompare(String(b.labelX))); //<--- СОРТИРОВКА ШКАЛЫ OX ЧТОБЫ БЫЛО КРАСИВО
+    arrGraphMax.sort((a, b) => String(a.labelX).localeCompare(String(b.labelX)))
+    arrGraphMin.sort((a, b) => String(a.labelX).localeCompare(String(b.labelX))); //<--- СОРТИРОВКА ШКАЛЫ OX ЧТОБЫ БЫЛО КРАСИВО
 
-    return arrGraph;
+    return [arrGraphMin, arrGraphMax];
 }
 
 
@@ -34,11 +38,11 @@ function drawGraph(data) { //<--- САМОЕ НАЧАЛО ПОСТРОЕНИЯ �
       if (document.getElementsByName('ox')[i].checked == true) keyX = document.getElementsByName('ox')[i].value;
     } 
 
-    let arrGraphMin
-    let arrGraphMax
+
     // создаем массив для построения графика
-    if (document.getElementById('minChecked').checked) arrGraphMin = createArrGraph(data, keyX, 0);
-    if (document.getElementById('maxChecked').checked) arrGraphMax = createArrGraph(data, keyX, 1)
+   // if (document.getElementById('minChecked').checked) arrGraphMin = createArrGraph(data, keyX, 0);
+   // if (document.getElementById('maxChecked').checked) arrGraphMax = createArrGraph(data, keyX, 1)
+   const [arrGraphMin, arrGraphMax] = createArrGraph(data, keyX);
 
 
     let svg = d3.select("svg")
@@ -53,11 +57,11 @@ function drawGraph(data) { //<--- САМОЕ НАЧАЛО ПОСТРОЕНИЯ �
   }
 
     // создаем шкалы преобразования и выводим оси
-    const [scX, scY] = createAxis(svg, (arrGraphMax == null ? arrGraphMin : arrGraphMax), attr_area); //<--- РИСУЕТСЯ ГРАФИК
+    const [scX, scY] = createAxis(svg, (d3.select('#maxChecked').property('checked') ? arrGraphMax : arrGraphMin), attr_area); //<--- РИСУЕТСЯ ГРАФИК
+
+  //if (d3.select('#chart-type').property('value') == 'scatter') alert('1')
 
 
-
-   // createScatter(svg, arrGraph2, scX, scY, attr_area, "blue")
    if (document.getElementById('maxChecked').checked) {
     if (document.getElementById('chart-type').value == 'scatter') createScatter(svg, arrGraphMax, scX, scY, attr_area, "red")
     else createBar(svg, arrGraphMax, scX, scY, attr_area, "red", 0.2)
@@ -89,7 +93,8 @@ function createAxis(svg, data, attr_area){
 
     // создание осей
     let axisX = d3.axisBottom(scaleX); // горизонтальная
-    let axisY = d3.axisLeft(scaleY); // вертикальная
+    let axisY = d3.axisLeft(scaleY)// вертикальная
+    //.tickValues(d3.range(min * 0.85, max*1.05, 1)); 
 
     // отрисовка осей в SVG-элементе
     svg.append("g")
@@ -160,7 +165,7 @@ function createBar(svg, data, scaleX, scaleY, attr_area, color, side) {  //<--- 
     .attr("fill", color);
 }
 
-/*function createGraph(svg, data, scaleX, scaleY, attr_area) {
+/*function createGraph(svg, data, scaleX, scaleY, attr_area, color) {
   let line = d3.line()
       .x(d => scaleX(d.labelX))
       .y(d => scaleY(d.values))
@@ -171,6 +176,6 @@ function createBar(svg, data, scaleX, scaleY, attr_area, color, side) {  //<--- 
       .attr("transform", `translate(${attr_area.marginX}, ${attr_area.marginY})`)
   
       .style('stroke-width', '2')
-      .style('stroke', 'red')
+      .style('stroke', color)
       .style("fill", "none");
-} */
+}*/
