@@ -50,7 +50,7 @@ rows.selectAll('td:nth-child(2)')
   let head = document.createElement('thead')
   let tr = document.createElement('tr');
 
-  for(key in data[0]) {         //<--- СОЗДАНИЕ СТРОКИ С ЗАГОЛОВКАМИ
+  /*for(key in data[0]) {         //<--- СОЗДАНИЕ СТРОКИ С ЗАГОЛОВКАМИ
     let th = document.createElement('th');
     th.innerHTML = key;
     tr.append(th);
@@ -81,9 +81,34 @@ rows.selectAll('td:nth-child(2)')
 
     table.append(body);
 
-  }; 
+  }; */
+
+d3.select('table').append('thead')
+     .append('tr')
+     .selectAll('th')
+     .data(Object.keys(consoles[0]))
+     .enter()
+     .append('th')
+     .text(d => d)
+
+d3.select('table').append('tbody')
+      .selectAll('tr')
+      .data(consoles)
+      .enter()
+      .append('tr')
+
+d3.select('tbody').selectAll('tr')
+   .selectAll('td')
+   .data(d => Object.values(d))
+   .enter()
+   .append('td')
+   .text(d => d)
+
 
 }
+
+
+
 
 
 

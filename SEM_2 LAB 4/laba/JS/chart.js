@@ -9,6 +9,7 @@ function createArrGraph(data, key) {
     let arrGraphMin = []
     let valMax
     let valMin
+    console.log(groupObj)
 
 
     for(let entry of groupObj) { //<--- формирует массив
