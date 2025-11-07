@@ -207,6 +207,44 @@ const Knopka = (props) => {
 }
 const el = <Knopka mess='PUTIN IS GOD'></Knopka>
 
+Пример компонента-класса:
+class HelloClass extends React.Component { 
+
+  constructor(props) {
+    super(props);
+    this.press = this.press.bind(this) 
+}
+
+  state = {
+    number: 100
+  };
+
+  toUpper = (text) => text.toLowerCase()
+
+  render() {
+    return <h2>Привет, {this.toUpper(this.props.name)}</h2>
+  }  
+} 
+
+КЛАСС-КНОПКА:
+class ButtonClass extends React.Component { 
+
+  constructor(props) {
+    super(props);
+    this.press = this.press.bind(this) 
+}
+
+  press() {
+    alert('Привет!')  
+  }
+
+  render() {
+    return <button onClick={this.press}>Click</button>
+  }  
+} 
+
+Менять состояние можно только с помощью метода setState()
+
 Если передать событию 'event', то можно вывести его и узнать о событии;
 
 Math.round(Math.random() * 100) - вызвать случайное число;
