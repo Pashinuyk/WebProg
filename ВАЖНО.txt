@@ -48,8 +48,11 @@ border-width: 100px - ширина границы;
 border-color: green - цвет границы;
 border-style: solid - стиль линии для границы;
 
-margin: 10px - отступ от текущего элемента до границы охватывающего;
-padding: 10px - отступ от границы элемента до его содержимого;
+margin: 10px 10px - отступ текущего элемента от границы охватывающего. Первое число по-вертикали, второе - по-горизонтали. Это внешний отступ;
+padding: 10px 10px - отступ от границы элемента до его содержимого. Что за что отвечают числа аналогично margin'у. Это внутренний отступ;
+
+box-sizing: border-box - дочерние элементы не будут выходить за пределы родителя;
+
 
 
 align='center' - размещение по-середине
@@ -67,10 +70,26 @@ xl - >1536
 display: flex | inline-flex
 flex-direction: row | row-reverse | column | column-reverse
 flex-wrap: nowrap | wrap | wrap-reverse - перенос элементов на другую строку;
-justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly - выравнивание элементов flex-контейнера вдоль главной оси;
-align-items: stretch | flex-start | flex-end | center | baseline - выравнивание элементов flex-контейнера вдоль поперечной оси;
+justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly - выравнивание элементов flex-контейнера вдоль главной оси (главная ось зависит от значения в flex-direction);
+align-items: stretch | flex-start | flex-end | center | baseline - выравнивание элементов flex-контейнера вдоль поперечной оси (поперечная ось всегда перпендикулярна главной);
 align-content: flex-start | flex-end | center | space-between | space-around | space-evenly - выравнивание вдоль поперечной оси, если в контейнере есть свободное место и элементы занимают несколько строк;
 
+
+
+                   === GRID ===
+display: grid | inline-grid;
+grid-template-rows: repeat(2, 1fr) - кол-во строк и размер каждого дочернего элемента;
+grid-template-columns 1fr 2fr 1fr - кол-во столбцов и размер каждого дочернего эл-та;
+
+grid-row-gap, grid-column-gap, grid-gap - интервал между grid-элементами;
+
+justify-content: start, end, center, stretch, space-between, space-around, space-evenly - выравнивание всей grid-сетки по главной оси;
+
+justify-items: start, end, center, stretch - выравнивание эл-тов в рамках самой сетки по главной оси;
+
+align-content: start, end, center, stretch, space-between, space-around, space-evenly - выравнивание всей grid-сетки по поперечной оси;
+
+align-items: start, end, center, stretch - выравнивание grid-элементов по поперечной оси;
 
 
 ====================================== СТРОКИ =================================================
@@ -502,8 +521,34 @@ type Props = {
 }
 const Rate = ({ title, score }: Props) => ( <h1>{title} = {score})</h1> )
 
- 
+===================================== MUI-элементы ======================================
 
+Container - элемент, ограничивающий ширину и центрирующий по-горизонтали.
+maxWidth='xs | sm | md | lg | xl' | {false} - задаёт макс. ширину контейнера
+disableGutters={false | true} - убирает боковые отступы
+component='div' - устанавливает, какой ХТМЛ-тег стоит в основе
+
+Box - просто коробка. Все свойства - в рамках xs={{ ... }}
+
+AppBar - элемент <header>, используется для создания навигационных баров:
+position='static | fixed | absolute | sticky'
+
+Toolbar - компонент для создания горизонтальной панели внутри AppBar, который автоматически выравнивает дочерние элементы по центру по поперечной оси. Работает только в паре с AppBar, задаёт минимальную высоту 56px
+
+Typography - компонент для работы с текстом, обеспечивающий правильные стили.
+variant='h1 | h2 | h3 | h4 | h5 | h6' - варианты типографии
+
+Drawer - элемент, появляющий из стороны;
+anchor='top | bottom | left | right'
+open = { переменная } - при значении какой-то переменной открывается
+onClose - что происходит при закрытии (клике за пределы)
+
+
+
+
+
+const types = Array.from (new Set(prod.map(item => item.type)) )
+let res: {type: string; midCost: number; count: number}[] = types.map(item => ({type: item, midCost: 0, count: 0}))
 
 
 
